@@ -4,9 +4,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 @Injectable()
 export class CitiesService {
-  //   private id = 0;
-  //   private readonly cities: City[] = [];
-
   constructor(@InjectModel('City') private readonly cityModel: Model<City>) {}
 
   create(city: City) {
