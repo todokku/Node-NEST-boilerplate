@@ -11,21 +11,6 @@ export class UsersService {
   ) /* @InjectModel('User') private readonly userModel: Model<User> */
   {}
 
-  async validateOnUser(userLogin: UserLoginDto) {
-    try {
-      const user = await this.userModel
-        .findOne({ email: userLogin.email })
-        .lean();
-      if (user && userLogin.password === user.password) {
-        const { password, ...result } = user;
-        return result;
-      } else {
-        return { error: 'Invalid Email or Password' };
-      }
-    } catch (error) {
-      Logger.error(error);
-    }
-  }
   create(user: User) {
     return this.userModel.create(user);
   }
@@ -45,6 +30,14 @@ export class UsersService {
   getById(id) {
     try {
       return this.userModel.findOne({ _id: id });
+    } catch (error) {
+      return Logger.error(error);
+    }
+  }
+
+  getByEmail(email) {
+    try {
+      return this.userModel.findOne({ email });
     } catch (error) {
       return Logger.error(error);
     }
