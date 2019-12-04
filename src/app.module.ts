@@ -3,7 +3,7 @@ import { join } from 'path';
 import { parse, config } from 'dotenv';
 config(parse(readFileSync(join(__dirname, '..', '.env'))));
 
-import { Module } from '@nestjs/common';
+import { Module, Logger } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CitiesModule } from './cities/cities.module';
@@ -17,10 +17,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     // Mongoose DB connection Init
-    MongooseModule.forRoot(
-      process.env.DB_URI,
-      mongooseOptions,
-    ),
+    MongooseModule.forRoot(process.env.DB_URI, mongooseOptions),
     // App Modules
     CitiesModule,
     UsersModule,
@@ -31,4 +28,5 @@ import { AuthModule } from './auth/auth.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}
