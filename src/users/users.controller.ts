@@ -10,6 +10,9 @@ import {
   Param,
   Body,
   UseGuards,
+  Req,
+  Request,
+  Logger,
 } from '@nestjs/common';
 import {
   ApiUseTags,
@@ -45,8 +48,9 @@ export class UsersController {
     title: 'Get all users',
     description: 'End-Point for get all users',
   })
-  findAll() {
-    return this.usersService.getAll();
+  findAll(@Req() req: Request) {
+
+    return req.headers;
   }
 
   @Get(':id')

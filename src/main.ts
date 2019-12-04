@@ -11,9 +11,7 @@ import * as helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     // cors: true,
-    // logger: console,
-    // httpsOptions:[]
-    // logger: ['error', 'warn'],
+    logger: ['error', 'warn'],
   });
 
   // Security: Register
@@ -36,8 +34,9 @@ async function bootstrap() {
     .setDescription(
       'Create boilerplate using NestJS, Mongoose, Swagger, Passport',
     )
+    .addBearerAuth()
     .setVersion('1.0')
-    // .addTag('hisham')
+    // .addTag('APIs ')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);

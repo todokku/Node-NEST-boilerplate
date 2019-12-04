@@ -6,10 +6,11 @@ import { Model } from 'mongoose';
 @Injectable()
 export class UsersService {
   constructor(
-    @Inject('USER_MODEL')
+    // @Inject('USER_MODEL')
+    // private readonly userModel: Model<User>,
+    @InjectModel('User')
     private readonly userModel: Model<User>,
-  ) /* @InjectModel('User') private readonly userModel: Model<User> */
-  {}
+  ) {}
 
   create(user: User) {
     return this.userModel.create(user);
