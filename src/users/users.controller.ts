@@ -9,6 +9,7 @@ import {
   Put,
   Param,
   Body,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiUseTags,
@@ -16,6 +17,7 @@ import {
   ApiBearerAuth,
   ApiOperation,
 } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiUseTags('Users')
 @ApiBearerAuth()
@@ -37,6 +39,7 @@ export class UsersController {
     return this.usersService.create(createdUserDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   @ApiOperation({
     title: 'Get all users',

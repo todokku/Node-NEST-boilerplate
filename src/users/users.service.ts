@@ -7,21 +7,6 @@ import { Model } from 'mongoose';
 export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  async validateOnUser(userLogin: UserLoginDto) {
-    try {
-      const user = await this.userModel
-        .findOne({ email: userLogin.email })
-        .lean();
-      if (user && userLogin.password === user.password) {
-        const { password, ...result } = user;
-        return result;
-      } else {
-        return null;
-      }
-    } catch (error) {
-      Logger.error(error);
-    }
-  }
   create(user: User) {
     return this.userModel.create(user);
   }
@@ -41,6 +26,14 @@ export class UsersService {
   getById(id) {
     try {
       return this.userModel.findOne({ _id: id });
+    } catch (error) {
+      return Logger.error(error);
+    }
+  }
+
+  getByEmail(email) {
+    try {
+      return this.userModel.findOne({ email });
     } catch (error) {
       return Logger.error(error);
     }
