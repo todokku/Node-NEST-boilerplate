@@ -13,20 +13,22 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { mongooseOptions } from './global/options/mongoose';
 // import { ConfigurationsModule } from './global/configurations/configurations.module';
 import { AuthModule } from './auth/auth.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
+    // DatabaseModule,
     // Mongoose DB connection Init
-    MongooseModule.forRoot(process.env.DB_URI, mongooseOptions),
+    // MongooseModule.forRoot(process.env.DB_URI, mongooseOptions),
     // App Modules
-    CitiesModule,
+    // CitiesModule,
     UsersModule,
-    RestaurantsModule,
+    RestaurantsModule, 
     AuthModule,
+    DatabaseModule,
     // ConfigurationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-}
+export class AppModule {}

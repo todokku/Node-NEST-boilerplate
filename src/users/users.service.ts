@@ -1,11 +1,15 @@
 import { UserLoginDto } from '../auth/dto/user-login.dto';
 import { User } from './interfaces/user.interface';
-import { Injectable, Logger, Body } from '@nestjs/common';
+import { Injectable, Logger, Body, Inject } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+  constructor(
+    @Inject('USER_MODEL')
+    private readonly userModel: Model<User>,
+  ) /* @InjectModel('User') private readonly userModel: Model<User> */
+  {}
 
   async validateOnUser(userLogin: UserLoginDto) {
     try {
@@ -16,7 +20,7 @@ export class UsersService {
         const { password, ...result } = user;
         return result;
       } else {
-        return null;
+        return { error: 'Invalid Email or Password' };
       }
     } catch (error) {
       Logger.error(error);
