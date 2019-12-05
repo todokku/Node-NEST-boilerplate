@@ -20,10 +20,10 @@ import { AuthModule } from './auth/auth.module';
     MongooseModule.forRoot(process.env.DB_URI, mongooseOptions),
 
     /* App Modules */
-    // CitiesModule,
-    UsersModule,
-    RestaurantsModule,
     AuthModule,
+    UsersModule,
+    // CitiesModule,
+    RestaurantsModule,
 
     /* Configurations */
     // ConfigurationsModule,

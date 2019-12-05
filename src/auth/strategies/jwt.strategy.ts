@@ -1,8 +1,8 @@
 import { constants } from '../../global/constants';
-// import { constants } from '../../global/constants';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, Logger } from '@nestjs/common';
+
 // Logger.log(constants);
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

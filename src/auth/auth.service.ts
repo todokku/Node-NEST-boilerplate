@@ -10,6 +10,15 @@ export class AuthService {
     private readonly usersService: UsersService, // private readonly authController: AuthController,
   ) {}
 
+  async validateUser(username: string, pass: string) {
+    const user = await this.usersService.getByEmail(username);
+    if (user && user.password === pass) {
+      const { password, ...result } = user;
+      return result;
+    }
+    return null;
+  }
+
   async login(userLogin) {
     const user = await this.usersService.getByEmail(userLogin.email);
     if (user && userLogin.password === user.password) {

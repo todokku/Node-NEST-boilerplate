@@ -1,12 +1,19 @@
-import { classValidatorOptions } from './global/options/class-validator';
+// Nest build-in modules
 import { NestFactory } from '@nestjs/core';
-
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import * as rateLimit from 'express-rate-limit';
-
-import { AppModule } from './app.module';
 import { ValidationPipe, Logger } from '@nestjs/common';
+
+// API documentations
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
+// API Validation
+import { classValidatorOptions } from './global/options/class-validator';
+
+// Security
+import * as rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
+
+// Main app for all apps
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {

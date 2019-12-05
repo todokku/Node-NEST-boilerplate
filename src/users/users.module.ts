@@ -1,5 +1,3 @@
-// import { DatabaseModule } from './../database/database.module';
-import { usersProviders } from './users.providers';
 import { UserSchema } from './schemas/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersService } from './users.service';
