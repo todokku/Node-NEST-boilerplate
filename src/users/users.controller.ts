@@ -22,9 +22,7 @@ import {
 } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 
-
 @ApiUseTags('Users')
-@ApiBearerAuth()
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -44,13 +42,13 @@ export class UsersController {
   }
 
   @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
   @Get()
   @ApiOperation({
     title: 'Get all users',
     description: 'End-Point for get all users',
   })
   findAll(@Req() req: Request) {
-
     return req.headers;
   }
 
