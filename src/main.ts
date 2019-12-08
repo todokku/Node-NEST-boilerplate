@@ -12,6 +12,9 @@ import { classValidatorOptions } from './global/options/class-validator';
 import * as rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
 
+// Cookies parser
+import * as cookieParser from 'cookie-parser';
+
 // Main app for all apps
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './global/filters/exceptions.filter';
@@ -35,6 +38,9 @@ async function bootstrap() {
       max: 100, // limit each IP to 100 requests per windowMs
     }),
   );
+
+  // Cookie parser
+  app.use(cookieParser());
 
   // Security: Register validator class-validator
   app.useGlobalPipes(new ValidationPipe(classValidatorOptions));
