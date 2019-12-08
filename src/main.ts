@@ -14,12 +14,16 @@ import * as helmet from 'helmet';
 
 // Main app for all apps
 import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './global/filters/exceptions.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     // cors: true,
     logger: ['error', 'warn'],
   });
+
+  // Global exceptions filter
+  app.useGlobalFilters(new AllExceptionsFilter());
 
   // Security: Register
   app.use(helmet());

@@ -3,17 +3,22 @@ import { User } from './interfaces/user.interface';
 import { Injectable, Logger, Body, Inject } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { constants } from '../global/constants';
 @Injectable()
 export class UsersService {
   constructor(
-    // @Inject('USER_MODEL')
-    // private readonly userModel: Model<User>,
     @InjectModel('User')
     private readonly userModel: Model<User>,
-  ) {}
+  ) {
+    this.createAdminIfNotExists();
+  }
 
   create(user: User) {
-    return this.userModel.create(user);
+    try {
+      return this.userModel.create(user);
+    } catch (error) {
+      Logger.log(error);
+    }
   }
 
   update(id: string, user: User) {
@@ -55,6 +60,27 @@ export class UsersService {
   getAll() {
     try {
       return this.userModel.find();
+    } catch (error) {
+      return Logger.error(error);
+    }
+  }
+
+  async createAdminIfNotExists() {
+    try {
+      const adminExists = await this.userModel.findOne({
+        email: /admin@indexgroup.net/,
+      });
+      if (adminExists) {
+        Logger.log('Admin account exists', 'Custom');
+      } else {
+        await this.userModel.create({
+          name: constants.admin.name,
+          email: constants.admin.email,
+          password: constants.admin.pass,
+          role: 'Admin',
+        });
+        return Logger.log('Admin account created', 'Custom');
+      }
     } catch (error) {
       return Logger.error(error);
     }
