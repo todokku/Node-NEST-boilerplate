@@ -3,7 +3,7 @@ export const mongooseOptions = {
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
-  autoIndex: false, // Don't build indexes
+  // autoIndex: true, // Build indexes automatically
   // reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
   // reconnectInterval: 500, // Reconnect every 500ms
   poolSize: 10, // Maintain up to 10 socket connections

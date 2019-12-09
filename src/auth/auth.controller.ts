@@ -36,6 +36,10 @@ export class AuthController {
   }
 
   @Post('logout')
+  @ApiOperation({
+    title: 'Logout user',
+    description: 'End-Point for logout user',
+  })
   logout(@Req() request) {
     try {
       console.log(request);
@@ -45,7 +49,24 @@ export class AuthController {
     }
   }
 
+  @Post('register')
+  @ApiOperation({
+    title: 'Register new user',
+    description: 'End-Point for register new user',
+  })
+  register() {
+    try {
+      // return this.usersService.validateOnUser(userLogin);
+    } catch (error) {
+      Logger.error(error);
+    }
+  }
+
   @Post('change-password')
+  @ApiOperation({
+    title: 'Change user password',
+    description: 'End-Point for change user password',
+  })
   changePassword() {
     try {
       // return this.usersService.validateOnUser();

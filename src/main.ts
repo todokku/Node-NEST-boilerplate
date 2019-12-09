@@ -12,11 +12,12 @@ import { classValidatorOptions } from './global/options/class-validator';
 import * as rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
 
-// cookie parser
+// Cookies parser
 import * as cookieParser from 'cookie-parser';
 
 // Main app for all apps
 import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './global/filters/exceptions.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -24,9 +25,12 @@ async function bootstrap() {
     logger: ['error', 'warn'],
   });
 
+  // Global exceptions filter
+  app.useGlobalFilters(new AllExceptionsFilter());
+
   // Cookie parser
   app.use(cookieParser());
-
+  
   // Security: Register
   app.use(helmet());
 
@@ -37,6 +41,9 @@ async function bootstrap() {
       max: 100, // limit each IP to 100 requests per windowMs
     }),
   );
+
+  // Cookie parser
+  app.use(cookieParser());
 
   // Security: Register validator class-validator
   app.useGlobalPipes(new ValidationPipe(classValidatorOptions));
@@ -49,7 +56,7 @@ async function bootstrap() {
     )
     .addBearerAuth()
     .setVersion('1.0')
-    // .addTag('APIs ')
+    // .addTag('api')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);

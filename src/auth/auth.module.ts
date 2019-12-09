@@ -1,3 +1,4 @@
+import { jwtOptions } from './../global/options/jwt';
 import { constants } from './../global/constants';
 
 import { JwtStrategy } from './strategies/jwt.strategy';
@@ -15,8 +16,8 @@ import { JwtModule } from '@nestjs/jwt';
     UsersModule,
     PassportModule,
     JwtModule.register({
-      secret: constants.JWT.secret,
-      signOptions: constants.JWT.signOptions,
+      secret: jwtOptions.secret,
+      signOptions: jwtOptions.signOptions,
     }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
@@ -32,6 +33,7 @@ import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
+import { jwtOptions } from '../global/options/jwt';
 
 @Module({
   imports: [

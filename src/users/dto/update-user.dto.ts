@@ -12,7 +12,7 @@ export class UpdateUserDto extends BaseUpdateClass {
   password: string;
   //   confirmPassword: string;
 
-  @ApiModelProperty()
+  @ApiModelProperty({ enum: ['Admin', 'User'] })
   @IsEnum({ user: 'User', admin: 'Admin' })
   role: string;
 }
