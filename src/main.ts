@@ -12,6 +12,9 @@ import { classValidatorOptions } from './global/options/class-validator';
 import * as rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
 
+// cookie parser
+import * as cookieParser from 'cookie-parser';
+
 // Main app for all apps
 import { AppModule } from './app.module';
 
@@ -20,6 +23,9 @@ async function bootstrap() {
     // cors: true,
     logger: ['error', 'warn'],
   });
+
+  // Cookie parser
+  app.use(cookieParser());
 
   // Security: Register
   app.use(helmet());

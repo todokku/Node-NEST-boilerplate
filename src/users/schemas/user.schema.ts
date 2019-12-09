@@ -15,8 +15,3 @@ export const UserSchema = new Schema({
   role: { type: String, enum: ['Admin', 'User'] },
 });
 UserSchema.index({ email: 1 }, { unique: true });
-setTimeout(() => {
-  console.log(mongoose.models);
-  //   mongoose;
-  //   nestMongoose;
-}, 1);
