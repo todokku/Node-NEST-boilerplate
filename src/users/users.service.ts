@@ -17,7 +17,7 @@ export class UsersService {
 
   async create(user: User) {
     try {
-      const { password, role, ...createdUser } = await this.userModel.create(
+      const { password, roles, ...createdUser } = await this.userModel.create(
         user,
       );
       return createdUser;
