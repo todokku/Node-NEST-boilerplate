@@ -14,7 +14,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const response = ctx.getResponse();
     const request = ctx.getRequest();
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
-
     const jsonResponse = {
       statusCode: null,
       timestamp: new Date().toISOString(),
@@ -33,6 +32,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
     jsonResponse.statusCode = status;
 
+    console.log(exception);
     response.status(status).json(jsonResponse);
   }
 }

@@ -7,7 +7,7 @@ export class CreateUserDto extends BaseCreateClass {
   @IsString()
   name: string;
 
-  @ApiModelProperty({ example: 'mail@gmail.com' })
+  @ApiModelProperty({ example: 'user@mail.com' })
   @IsEmail()
   email: string;
 

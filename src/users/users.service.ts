@@ -13,9 +13,12 @@ export class UsersService {
     this.createAdminIfNotExists();
   }
 
-  create(user: User) {
+  async create(user: User) {
     try {
-      return this.userModel.create(user);
+      const { password, role, ...createdUser } = await this.userModel.create(
+        user,
+      );
+      return createdUser;
     } catch (error) {
       Logger.log(error);
     }

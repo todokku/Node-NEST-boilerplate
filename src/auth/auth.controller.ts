@@ -1,9 +1,10 @@
+import { RegisterNewUserDto } from './dto/register-new-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/user-login.dto';
 import { UsersService } from './../users/users.service';
 import { ApiUseTags, ApiOperation } from '@nestjs/swagger';
-import { Controller, Post, Body, Logger, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Logger, UseGuards, Req } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 @ApiUseTags('Authorization and Authentication')
@@ -40,8 +41,10 @@ export class AuthController {
     title: 'Logout user',
     description: 'End-Point for logout user',
   })
-  logout() {
+  logout(@Req() req) {
     try {
+      console.log(req);
+      // return req;
       // return this.usersService.validateOnUser(userLogin);
     } catch (error) {
       Logger.error(error);
@@ -53,9 +56,9 @@ export class AuthController {
     title: 'Register new user',
     description: 'End-Point for register new user',
   })
-  register() {
+  register(@Body() registerNewUserDto: RegisterNewUserDto) {
     try {
-      // return this.usersService.validateOnUser(userLogin);
+      return this.authService.register(registerNewUserDto);
     } catch (error) {
       Logger.error(error);
     }
