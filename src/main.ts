@@ -13,7 +13,7 @@ import * as rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
 
 // Cookies parser
-// import * as cookieParser from 'cookie-parser';
+import * as cookieParser from 'cookie-parser';
 
 // Main app for all apps
 import { AppModule } from './app.module';
@@ -29,7 +29,7 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter());
 
   // Cookie parser
-  // app.use(cookieParser());
+  app.use(cookieParser());
 
   // Security: Register
   app.use(helmet());

@@ -1,8 +1,9 @@
 export const jwtOptions = {
   secret: 'abcd123456',
   signOptions: {
-    // expiresIn : 1000 millisecond * 60 seconds * 60 minutes * 24 hours * 7 days = ( 1 week == 604800000 millisecond )
-    expiresIn: 604800000,
+    // 1 week  = 604800000 ms
+    // 1 hour  = 3600000 ms
+    expiresIn: 3600000,
   },
   ignoreExpiration: false,
 };

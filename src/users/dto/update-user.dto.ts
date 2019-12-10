@@ -11,11 +11,6 @@ export class UpdateUserDto extends BaseUpdateClass {
   @IsEmail()
   email: string;
 
-  @ApiModelProperty()
-  @Matches(/^.{6,}$/, { message: 'Password at least 6' })
-  password: string;
-  //   confirmPassword: string;
-
   @ApiModelProperty({ enum: ['Admin', 'User'] })
   @IsEnum({ user: 'User', admin: 'Admin' })
   roles: string[];

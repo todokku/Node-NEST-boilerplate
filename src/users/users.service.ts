@@ -2,9 +2,8 @@ import { UserLoginDto } from '../auth/dto/user-login.dto';
 import { User } from './interfaces/user.interface';
 import { Injectable, Logger, Body, Inject, UseGuards } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { constants } from '../global/constants';
-
 
 @Injectable()
 export class UsersService {
@@ -17,19 +16,18 @@ export class UsersService {
 
   async create(user: User) {
     try {
-      const { password, roles, ...createdUser } = await this.userModel.create(
-        user,
-      );
+      const { password, ...createdUser } = await this.userModel.create(user);
       return createdUser;
     } catch (error) {
       Logger.log(error);
     }
   }
 
-  update(id: string, user: User) {
+  update(_id: ObjectId, user: User) {
     try {
+      if (user.password) delete user.password;
       return this.userModel.findOneAndUpdate(
-        { _id: id },
+        { _id },
         { $set: user },
         { new: true },
       );
@@ -38,25 +36,29 @@ export class UsersService {
     }
   }
 
-  getById(id) {
+  async getById(_id: ObjectId) {
     try {
-      return this.userModel.findOne({ _id: id });
+      const { password, ...user } = await this.userModel.findOne({
+        _id,
+      });
+      return user;
     } catch (error) {
       return Logger.error(error);
     }
   }
 
-  getByEmail(email) {
+  delete(_id: ObjectId) {
     try {
-      return this.userModel.findOne({ email });
+      return this.userModel.findOneAndDelete({ _id });
     } catch (error) {
       return Logger.error(error);
     }
   }
 
-  delete(id) {
+  async getByEmail(email) {
     try {
-      return this.userModel.findOneAndDelete({ _id: id });
+      const { password, ...user } = await this.userModel.findOne({ email });
+      return user;
     } catch (error) {
       return Logger.error(error);
     }

@@ -22,6 +22,5 @@ export class RegisterNewUserDto {
   @Matches(/^.{6,}$/, { message: 'Password at least 6' })
   confirmPassword: string;
 
-  // @IsEnum()
   roles = ['User'];
 }

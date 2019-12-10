@@ -52,30 +52,30 @@ export class UsersController {
     return req.user;
   }
 
-  @Get(':id')
+  @Get(':_id')
   @ApiOperation({
     title: 'Get user by id',
     description: 'End-Point for get user by id',
   })
-  getById(@Param('id') id: string) {
-    return this.usersService.getById(id);
+  getById(@Param('_id') _id: string) {
+    return this.usersService.getById(_id);
   }
 
-  @Delete(':id')
+  @Delete(':_id')
   @ApiOperation({
     title: 'Delete user by id',
     description: 'End-Point for delete user by id',
   })
-  delete(@Param('id') id: string) {
-    return this.usersService.delete(id);
+  delete(@Param('_id') _id: string) {
+    return this.usersService.delete(_id);
   }
 
-  @Put(':id')
+  @Put(':_id')
   @ApiOperation({
     title: 'Update user by id',
     description: 'End-Point for update user by id',
   })
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  update(@Param('_id') _id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(_id, updateUserDto);
   }
 }

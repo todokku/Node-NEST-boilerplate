@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { AuthGuard } from '@nestjs/passport';
 import { UpdateCityDto } from './dto/update-city.dto';
 import { CreateCityDto } from './dto/create-city.dto';
@@ -49,30 +50,30 @@ export class CitiesController {
     return this.citiesService.getAll();
   }
 
-  @Get(':id')
+  @Get(':_id')
   @ApiOperation({
     title: 'Get city by id',
     description: 'End-Point for get city by id',
   })
-  getById(@Param('id') id: string) {
-    return this.citiesService.getById(id);
+  getById(@Param('_id') _id: ObjectId) {
+    return this.citiesService.getById(_id);
   }
 
-  @Delete(':id')
+  @Delete(':_id')
   @ApiOperation({
     title: 'Delete city by id',
     description: 'End-Point for delete city by id',
   })
-  delete(@Param('id') id: string) {
-    return this.citiesService.delete(id);
+  delete(@Param('_id') _id: ObjectId) {
+    return this.citiesService.delete(_id);
   }
 
-  @Put(':id')
+  @Put(':_id')
   @ApiOperation({
     title: 'Update city by id',
     description: 'End-Point for update city by id',
   })
-  update(@Param('id') id: string, @Body() updateCityDto: UpdateCityDto) {
-    return this.citiesService.update(id, updateCityDto);
+  update(@Param('_id') _id: ObjectId, @Body() updateCityDto: UpdateCityDto) {
+    return this.citiesService.update(_id, updateCityDto);
   }
 }

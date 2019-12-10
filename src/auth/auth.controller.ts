@@ -34,9 +34,10 @@ export class AuthController {
     title: 'Logout user',
     description: 'End-Point for logout user',
   })
-  logout(@User() user) {
+  logout(@Req() req) {
     try {
-      return {};
+      return req.cookie('jwt', '', { maxAge: Date.now() });
+      // return {};
       // return this.usersService.validateOnUser(userLogin);
     } catch (error) {
       Logger.error(error);
