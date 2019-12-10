@@ -1,3 +1,4 @@
+import { AuthGuard } from '@nestjs/passport';
 import { UpdateCityDto } from './dto/update-city.dto';
 import { CreateCityDto } from './dto/create-city.dto';
 import { CitiesService } from './cities.service';
@@ -9,6 +10,7 @@ import {
   Put,
   Param,
   Body,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiUseTags,
@@ -18,6 +20,7 @@ import {
 } from '@nestjs/swagger';
 
 @ApiUseTags('Cities')
+@UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 @Controller('cities')
 export class CitiesController {

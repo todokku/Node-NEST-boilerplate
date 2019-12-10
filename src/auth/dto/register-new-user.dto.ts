@@ -2,15 +2,11 @@ import { IsEmail, Matches, IsEnum, IsString } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
 
 export class RegisterNewUserDto {
-  @ApiModelProperty({
-    example: 'user',
-  })
+  @ApiModelProperty({ example: 'user name' })
   @IsString()
   name: string;
 
-  @ApiModelProperty({
-    example: 'user@mail.com',
-  })
+  @ApiModelProperty({ example: 'user@mail.com' })
   @IsEmail()
   email: string;
 
@@ -27,5 +23,5 @@ export class RegisterNewUserDto {
   confirmPassword: string;
 
   // @IsEnum()
-  role = 'User';
+  roles = ['User'];
 }
