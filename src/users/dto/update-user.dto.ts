@@ -14,5 +14,5 @@ export class UpdateUserDto extends BaseUpdateClass {
 
   @ApiModelProperty({ enum: ['Admin', 'User'] })
   @IsEnum({ user: 'User', admin: 'Admin' })
-  role: string;
+  roles: string[];
 }

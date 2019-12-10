@@ -1,9 +1,11 @@
 import { UserLoginDto } from '../auth/dto/user-login.dto';
 import { User } from './interfaces/user.interface';
-import { Injectable, Logger, Body, Inject } from '@nestjs/common';
+import { Injectable, Logger, Body, Inject, UseGuards } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { constants } from '../global/constants';
+
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -76,8 +78,8 @@ export class UsersService {
         await this.userModel.create({
           name: constants.admin.name,
           email: constants.admin.email,
-          password: constants.admin.pass,
-          role: 'Admin',
+          password: constants.admin.password,
+          roles: ['Admin', 'User'],
         });
         return Logger.log('Admin account created', 'Custom');
       }

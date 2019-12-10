@@ -1,10 +1,13 @@
+import { RegisterNewUserDto } from './dto/register-new-user.dto';
+import { User } from './../global/decorators/user.decorator';
+
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/user-login.dto';
 import { UsersService } from './../users/users.service';
-import { ApiUseTags, ApiOperation } from '@nestjs/swagger';
+import { ApiUseTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { Controller, Post, Body, Logger, UseGuards, Req } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+// import { JwtService } from '@nestjs/jwt';
 
 @ApiUseTags('Authorization and Authentication')
 @Controller('auth')
@@ -22,27 +25,18 @@ export class AuthController {
   })
   login(@Body() userLogin: UserLoginDto) {
     return this.authService.login(userLogin);
-    // async validateOnUser(userLogin: UserLoginDto) {
-    // try {
-    // const user = await this.userModel
-    //   .findOne({ email: userLogin.email })
-    //   .lean();
-
-    // } catch (error) {
-    //   Logger.error(error);
-    // }
-    // }
-    // return;
   }
 
   @Post('logout')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
   @ApiOperation({
     title: 'Logout user',
     description: 'End-Point for logout user',
   })
-  logout(@Req() request) {
+  logout(@User() user) {
     try {
-      console.log(request);
+      return {};
       // return this.usersService.validateOnUser(userLogin);
     } catch (error) {
       Logger.error(error);
@@ -54,15 +48,18 @@ export class AuthController {
     title: 'Register new user',
     description: 'End-Point for register new user',
   })
-  register() {
+  register(@Body() registerNewUserDto: RegisterNewUserDto) {
     try {
-      // return this.usersService.validateOnUser(userLogin);
+      console.log(registerNewUserDto);
+      return this.usersService.create(registerNewUserDto);
     } catch (error) {
       Logger.error(error);
     }
   }
 
   @Post('change-password')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
   @ApiOperation({
     title: 'Change user password',
     description: 'End-Point for change user password',

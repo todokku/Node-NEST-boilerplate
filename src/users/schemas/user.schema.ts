@@ -6,7 +6,7 @@ export const UserSchema = new Schema({
     type: String,
   },
   password: { type: String },
-  role: { type: String, enum: ['Admin', 'User'] },
+  roles: [{ type: String, enum: ['Admin', 'User'] }],
 });
 
 UserSchema.index({ email: 1 }, { unique: true });

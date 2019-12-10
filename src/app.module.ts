@@ -22,7 +22,7 @@ import { AuthModule } from './auth/auth.module';
     /* App Modules */
     AuthModule,
     UsersModule,
-    // CitiesModule,
+    CitiesModule,
     RestaurantsModule,
 
     /* Configurations */
