@@ -7,46 +7,26 @@ export class CitiesService {
   constructor(@InjectModel('City') private readonly cityModel: Model<City>) {}
 
   create(city: City) {
-    try {
-      return this.cityModel.create(city);
-    } catch (error) {
-      return Logger.error(error);
-    }
+    return this.cityModel.create(city);
   }
 
   update(id: string, city: City) {
-    try {
-      return this.cityModel.findOneAndUpdate(
-        { _id: id },
-        { $set: city },
-        { new: true },
-      );
-    } catch (error) {
-      return Logger.error(error);
-    }
+    return this.cityModel.findOneAndUpdate(
+      { _id: id },
+      { $set: city },
+      { new: true },
+    );
   }
 
   getById(id) {
-    try {
-      return this.cityModel.findOne({ _id: id });
-    } catch (error) {
-      return Logger.error(error);
-    }
+    return this.cityModel.findOne({ _id: id });
   }
 
   delete(id) {
-    try {
-      return this.cityModel.findOneAndDelete({ _id: id });
-    } catch (error) {
-      return Logger.error(error);
-    }
+    return this.cityModel.findOneAndDelete({ _id: id });
   }
 
   getAll() {
-    try {
-      return this.cityModel.find();
-    } catch (error) {
-      return Logger.error(error);
-    }
+    return this.cityModel.find();
   }
 }

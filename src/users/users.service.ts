@@ -15,81 +15,53 @@ export class UsersService {
   }
 
   async create(user: User) {
-    try {
-      const { password, ...createdUser } = await this.userModel.create(user);
-      return createdUser;
-    } catch (error) {
-      Logger.log(error);
-    }
+    const { password, ...createdUser } = await this.userModel
+      .create(user);
+    return createdUser;
   }
 
   update(_id: ObjectId, user: User) {
-    try {
-      if (user.password) delete user.password;
-      return this.userModel.findOneAndUpdate(
-        { _id },
-        { $set: user },
-        { new: true },
-      );
-    } catch (error) {
-      return Logger.error(error);
-    }
+    if (user.password) delete user.password;
+    return this.userModel.findOneAndUpdate(
+      { _id },
+      { $set: user },
+      { new: true },
+    );
   }
 
   async getById(_id: ObjectId) {
-    try {
-      const { password, ...user } = await this.userModel.findOne({
-        _id,
-      });
-      return user;
-    } catch (error) {
-      return Logger.error(error);
-    }
+    const { password, ...user } = await this.userModel.findOne({
+      _id,
+    });
+    return user;
   }
 
   delete(_id: ObjectId) {
-    try {
-      return this.userModel.findOneAndDelete({ _id });
-    } catch (error) {
-      return Logger.error(error);
-    }
+    return this.userModel.findOneAndDelete({ _id });
   }
 
   async getByEmail(email) {
-    try {
-      const { password, ...user } = await this.userModel.findOne({ email });
-      return user;
-    } catch (error) {
-      return Logger.error(error);
-    }
+    return await this.userModel.findOne({ email }).lean();
   }
 
   getAll() {
-    try {
-      return this.userModel.find();
-    } catch (error) {
-      return Logger.error(error);
-    }
+    return this.userModel.find();
   }
 
   async createAdminIfNotExists() {
-    try {
-      const adminExists = await this.userModel.findOne({
-        email: /admin@indexgroup.net/,
+    const adminExists = await this.userModel.findOne({
+      email: /admin@indexgroup.net/,
+    });
+    if (adminExists) {
+      Logger.log('Admin account exists', 'Custom');
+    } else {
+      await this.userModel.create({
+        name: constants.admin.name,
+        email: constants.admin.email,
+        password: constants.admin.password,
+        role: 'Admin',
       });
-      if (adminExists) {
-        Logger.log('Admin account exists', 'Custom');
-      } else {
-        await this.userModel.create({
-          name: constants.admin.name,
-          email: constants.admin.email,
-          password: constants.admin.password,
-          roles: ['Admin', 'User'],
-        });
-        return Logger.log('Admin account created', 'Custom');
-      }
-    } catch (error) {
-      return Logger.error(error);
+      return Logger.log('Admin account created', 'Custom');
     }
   }
 }

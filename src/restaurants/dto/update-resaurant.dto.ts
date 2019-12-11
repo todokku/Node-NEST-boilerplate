@@ -1,4 +1,4 @@
-import { IsMongoId, IsEmail, IsString } from 'class-validator';
+import { IsMongoId } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
 
 export class CreateRestaurantDto {
@@ -14,12 +14,11 @@ export class CreateRestaurantDto {
 
   // Name
   @ApiModelProperty()
-  @IsString()
   name: string;
 
   // Email
+  // TODO: validate if is email
   @ApiModelProperty()
-  @IsEmail()
   email: string;
 
   // Location

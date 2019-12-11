@@ -1,14 +1,21 @@
+import * as bcryptjs from 'bcryptjs';
 import { User } from './../users/interfaces/user.interface';
 import { AuthController } from './auth.controller';
 import { UsersService } from './../users/users.service';
-import { Injectable, Logger } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  ForbiddenException,
+  ConflictException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
-    private readonly usersService: UsersService, // private readonly authController: AuthController,
+    private readonly usersService: UsersService,
   ) {}
 
   async validateUser(username: string, pass: string) {
@@ -22,27 +29,25 @@ export class AuthService {
 
   async login(userLogin) {
     const user = await this.usersService.getByEmail(userLogin.email);
+    bcrypt.
     if (user && userLogin.password === user.password) {
       const { password, ...result } = user;
       return {
-        access_token: this.jwtService.sign({
-          _id: user._id,
-          email: user.email,
-          roles: user.roles,
-        }),
+        bearer_token:
+          'Bearer ' +
+          this.jwtService.sign({
+            _id: user._id,
+            email: user.email,
+            role: user.role,
+          }),
       };
-      return result;
     } else {
-      return 'Invalid email or password';
+      throw new UnauthorizedException('Invalid email or password');
     }
-    Logger.log(userLogin);
   }
 
   async register(user: User) {
-    try {
-      return await this.usersService.create(user);
-    } catch (error) {
-      return Logger.log(error);
-    }
+    const { password, ...createdUser } = await this.usersService.create(user);
+    return createdUser;
   }
 }

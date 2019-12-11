@@ -1,21 +1,23 @@
 import { RegisterNewUserDto } from './dto/register-new-user.dto';
-import { User } from './../global/decorators/user.decorator';
-
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/user-login.dto';
-import { UsersService } from './../users/users.service';
 import { ApiUseTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { Controller, Post, Body, Logger, UseGuards, Req } from '@nestjs/common';
-// import { JwtService } from '@nestjs/jwt';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Req,
+  ForbiddenException,
+  InternalServerErrorException,
+} from '@nestjs/common';
+import * as bcrypt from 'bcryptjs';
 
 @ApiUseTags('Authorization and Authentication')
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private readonly usersService: UsersService,
-    private readonly authService: AuthService,
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   // @UseGuards(AuthGuard('local'))
   @Post('login')
@@ -35,13 +37,7 @@ export class AuthController {
     description: 'End-Point for logout user',
   })
   logout(@Req() req) {
-    try {
-      return req.cookie('jwt', '', { maxAge: Date.now() });
-      // return {};
-      // return this.usersService.validateOnUser(userLogin);
-    } catch (error) {
-      Logger.error(error);
-    }
+    return (req.cookies.jwt = { maxAge: Date.now() });
   }
 
   @Post('register')
@@ -50,10 +46,18 @@ export class AuthController {
     description: 'End-Point for register new user',
   })
   register(@Body() registerNewUserDto: RegisterNewUserDto) {
-    try {
-      return this.authService.register(registerNewUserDto);
-    } catch (error) {
-      Logger.error(error);
+    if (registerNewUserDto.password != registerNewUserDto.confirmPassword)
+      throw new ForbiddenException(
+        'Password and confirm password are not equal',
+      );
+    else {
+      bcrypt.hash('bacon', 10, (err, hashedPassword) => {
+        if (err) throw new InternalServerErrorException('Cannot hash password');
+        else {
+          registerNewUserDto.password = hashedPassword;
+          return this.authService.register(registerNewUserDto);
+        }
+      });
     }
   }
 
@@ -65,10 +69,6 @@ export class AuthController {
     description: 'End-Point for change user password',
   })
   changePassword() {
-    try {
-      // return this.usersService.validateOnUser();
-    } catch (error) {
-      Logger.error(error);
-    }
+    // return this.usersService.validateOnUser();
   }
 }

@@ -1,3 +1,4 @@
+import { UserRoles } from './../enum/roles.enums';
 import { Schema } from 'mongoose';
 
 export const UserSchema = new Schema({
@@ -6,7 +7,7 @@ export const UserSchema = new Schema({
     type: String,
   },
   password: { type: String },
-  roles: [{ type: String, enum: ['Admin', 'User'] }],
+  role: { type: UserRoles /* , enum: ['Admin', 'User'] */ },
 });
 
 UserSchema.index({ email: 1 }, { unique: true });
