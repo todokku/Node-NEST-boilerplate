@@ -1,18 +1,12 @@
+import { bcryptOptions } from '../shared/options/bcrypt.options';
+import { errors } from '../shared/constants/errors';
 import { RegisterNewUserDto } from './dto/register-new-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/user-login.dto';
 import { ApiUseTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import {
-  Controller,
-  Post,
-  Body,
-  UseGuards,
-  Req,
-  ForbiddenException,
-  InternalServerErrorException,
-} from '@nestjs/common';
-import * as bcrypt from 'bcryptjs';
+import { Controller, Post, Body, UseGuards, Req } from '@nestjs/common';
+import { hash } from 'bcryptjs';
 
 @ApiUseTags('Authorization and Authentication')
 @Controller('auth')
@@ -45,19 +39,15 @@ export class AuthController {
     title: 'Register new user',
     description: 'End-Point for register new user',
   })
-  register(@Body() registerNewUserDto: RegisterNewUserDto) {
-    if (registerNewUserDto.password != registerNewUserDto.confirmPassword)
-      throw new ForbiddenException(
-        'Password and confirm password are not equal',
+  async register(@Body() registerNewUserDto: RegisterNewUserDto) {
+    if (registerNewUserDto.password !== registerNewUserDto.confirmPassword) {
+      throw errors.passwordNotEqualConfirmPassword;
+    } else {
+      registerNewUserDto.password = await hash(
+        registerNewUserDto.password,
+        bcryptOptions.rounds,
       );
-    else {
-      bcrypt.hash('bacon', 10, (err, hashedPassword) => {
-        if (err) throw new InternalServerErrorException('Cannot hash password');
-        else {
-          registerNewUserDto.password = hashedPassword;
-          return this.authService.register(registerNewUserDto);
-        }
-      });
+      return this.authService.register(registerNewUserDto);
     }
   }
 

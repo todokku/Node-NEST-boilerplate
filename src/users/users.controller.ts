@@ -1,4 +1,4 @@
-import { UserRoles } from './enum/roles.enums';
+import { ObjectId } from 'mongoose';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
@@ -11,17 +11,8 @@ import {
   Param,
   Body,
   UseGuards,
-  Req,
-  Request,
-  Logger,
 } from '@nestjs/common';
-import {
-  ApiUseTags,
-  ApiResponse,
-  ApiBearerAuth,
-  ApiOperation,
-  ApiImplicitQuery,
-} from '@nestjs/swagger';
+import { ApiUseTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 
 @ApiUseTags('Users')
@@ -50,8 +41,8 @@ export class UsersController {
     title: 'Get all users',
     description: 'End-Point for get all users',
   })
-  findAll(@Req() req) {
-    return req.user;
+  findAll() {
+    return this.usersService.getAll();
   }
 
   @Get(':_id')
@@ -59,8 +50,8 @@ export class UsersController {
     title: 'Get user by id',
     description: 'End-Point for get user by id',
   })
-  getById(@Param('_id') _id: string) {
-    return this.usersService.getById(_id);
+  getById(@Param('_id') id: string) {
+    return this.usersService.getById(id);
   }
 
   @Delete(':_id')
@@ -68,8 +59,8 @@ export class UsersController {
     title: 'Delete user by id',
     description: 'End-Point for delete user by id',
   })
-  delete(@Param('_id') _id: string) {
-    return this.usersService.delete(_id);
+  delete(@Param('_id') id: string) {
+    return this.usersService.delete(id);
   }
 
   @Put(':_id')
@@ -77,7 +68,7 @@ export class UsersController {
     title: 'Update user by id',
     description: 'End-Point for update user by id',
   })
-  update(@Param('_id') _id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(_id, updateUserDto);
+  update(@Param('_id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(id, updateUserDto);
   }
 }

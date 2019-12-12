@@ -1,29 +1,38 @@
-import { IsMongoId, IsEmail, IsString } from 'class-validator';
+import { LatLngDto } from './lat-lng.dto';
+import {
+  IsMongoId,
+  IsEmail,
+  IsString,
+  IsNumber,
+  ValidateNested,
+} from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 
 export class CreateRestaurantDto {
   // City Id
-  @ApiModelProperty()
+  @ApiModelProperty({ example: '000000000000000000000000' })
   @IsMongoId()
-  cityId: string;
+  readonly cityId: string;
 
   // Image
   // TODO: from images
   @ApiModelProperty()
-  image: string;
+  readonly image: string;
 
   // Name
   @ApiModelProperty()
   @IsString()
-  name: string;
+  readonly name: string;
 
   // Email
-  @ApiModelProperty()
+  @ApiModelProperty({ example: 'user@mail.com' })
   @IsEmail()
-  email: string;
+  readonly email: string;
 
   // Location
-  // TODO: Geo-location
   @ApiModelProperty()
-  location: string;
+  @ValidateNested()
+  @Type(() => LatLngDto)
+  readonly location: LatLngDto;
 }

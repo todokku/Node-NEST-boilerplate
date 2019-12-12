@@ -12,10 +12,11 @@ import {
   Param,
   Body,
   UseGuards,
+  UseInterceptors,
+  CacheInterceptor,
 } from '@nestjs/common';
 import {
   ApiUseTags,
-  ApiResponse,
   ApiBearerAuth,
   ApiOperation,
 } from '@nestjs/swagger';
@@ -23,6 +24,7 @@ import {
 @ApiUseTags('Cities')
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
+@UseInterceptors(CacheInterceptor)
 @Controller('cities')
 export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}

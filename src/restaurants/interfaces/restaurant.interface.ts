@@ -1,12 +1,11 @@
+import { ILocationLatLng } from './../../../dist/restaurants/interfaces/latLng.interface.d';
 import { Document } from 'mongoose';
-// import { IsMongoId } from 'class-validator';
-// import { ApiModelProperty } from '@nestjs/swagger';
 
-export interface Restaurant extends Document {
+export interface IRestaurant extends Document {
   // id: string;
   city: string;
   image: string;
   name: string;
   email: string;
-  location: string;
+  location: ILocationLatLng;
 }

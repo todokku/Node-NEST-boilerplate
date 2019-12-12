@@ -5,12 +5,12 @@ export class RegisterNewUserDto {
   // Name
   @ApiModelProperty({ example: 'user name' })
   @IsString()
-  name: string;
+  readonly name: string;
 
   // Email
   @ApiModelProperty({ example: 'user@mail.com' })
   @IsEmail()
-  email: string;
+  readonly email: string;
 
   // Password
   @ApiModelProperty({
@@ -24,7 +24,7 @@ export class RegisterNewUserDto {
     example: 'password123',
   })
   @Matches(/^.{6,}$/, { message: 'Password at least 6' })
-  confirmPassword: string;
+  readonly confirmPassword: string;
 
-  role = 'User';
+  readonly role = 'User';
 }

@@ -1,16 +1,16 @@
-import { City } from './interfaces/city.interface';
+import { ICity } from './interfaces/city.interface';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 @Injectable()
 export class CitiesService {
-  constructor(@InjectModel('City') private readonly cityModel: Model<City>) {}
+  constructor(@InjectModel('City') private readonly cityModel: Model<ICity>) {}
 
-  create(city: City) {
+  create(city: ICity) {
     return this.cityModel.create(city);
   }
 
-  update(id: string, city: City) {
+  update(id: string, city: ICity) {
     return this.cityModel.findOneAndUpdate(
       { _id: id },
       { $set: city },

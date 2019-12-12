@@ -4,26 +4,24 @@ import { IsMongoId, IsNumber, IsNotEmpty } from 'class-validator';
 export class BaseUpdateClass {
   // Id
   @ApiModelProperty({
-    // example: 'string',
+    example: '000000000000000000000000',
     description:
       'Mongo id of the document, Hex [0-9a-f], 24 letter alphanumeric',
   })
   @IsMongoId()
-  // tslint:disable-next-line: variable-name
-  public readonly _id?: string;
+  readonly _id?: string;
 
   // Version
   @ApiModelProperty({
-    // example: 0,
+    example: 0,
     description: 'Version of the document',
   })
   @IsNumber()
-  // tslint:disable-next-line: variable-name
-  public readonly __v?: number;
+  readonly __v?: number;
 
   // Name
   @ApiModelProperty({
-    // example: 'string',
+    example: 'document name',
     description: 'Name of the document',
   })
   @IsNotEmpty()

@@ -1,5 +1,8 @@
 {
     "standard.enable": false,
     "eslint.enable": false,
-    "jshint.enable": false
+    "jshint.enable": false,
+    "cSpell.words": [
+        "nestjs"
+    ]
 }

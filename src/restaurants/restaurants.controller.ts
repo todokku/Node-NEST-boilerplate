@@ -20,13 +20,13 @@ import {
 export class RestaurantsController {
   @Post()
   @UseInterceptors(FileInterceptor('image'))
-  @ApiConsumes('multipart/form-data')
+  // @ApiConsumes('multipart/form-data')
   @ApiImplicitFile({
     name: 'image',
     required: true,
     description: 'Restaurant image',
   })
   create(@UploadedFile() image, @Body() body: CreateRestaurantDto) {
-    return { body, image };
+    return { image, body };
   }
 }

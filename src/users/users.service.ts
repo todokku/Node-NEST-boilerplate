@@ -1,43 +1,73 @@
-import { UserLoginDto } from '../auth/dto/user-login.dto';
-import { User } from './interfaces/user.interface';
-import { Injectable, Logger, Body, Inject, UseGuards } from '@nestjs/common';
+import { bcryptOptions } from '../shared/options/bcrypt.options';
+import { errors } from '../shared/constants/errors';
+import { IUser } from './interfaces/user.interface';
+import {
+  Injectable,
+  Logger,
+  HttpException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
-import { constants } from '../global/constants';
+import { constants } from '../shared/constants/constants';
+import { hash } from 'bcryptjs';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel('User')
-    private readonly userModel: Model<User>,
+    private readonly userModel: Model<IUser>,
   ) {
     this.createAdminIfNotExists();
   }
 
-  async create(user: User) {
-    const { password, ...createdUser } = await this.userModel
-      .create(user);
-    return createdUser;
+  async create(user: IUser) {
+    const { password, role, ...newUser } = (
+      await this.userModel.create(user)
+    )._doc;
+    return newUser;
   }
 
-  update(_id: ObjectId, user: User) {
-    if (user.password) delete user.password;
-    return this.userModel.findOneAndUpdate(
-      { _id },
-      { $set: user },
-      { new: true },
-    );
+  async update(id: ObjectId, user: IUser) {
+    if (user.password) {
+      delete user.password;
+    }
+    const updatedUser = await this.userModel
+      .findOneAndUpdate({ _id: id }, { $set: user }, { new: true })
+      .lean();
+    if (updatedUser) {
+      const { password, ...finalUserObj } = updatedUser;
+      return finalUserObj;
+    } else {
+      throw errors.documentNotFound;
+    }
   }
 
-  async getById(_id: ObjectId) {
-    const { password, ...user } = await this.userModel.findOne({
-      _id,
-    });
-    return user;
+  async getById(id: ObjectId) {
+    const userExisted = await this.userModel
+      .findOne({
+        _id: id,
+      })
+      .lean();
+
+    if (userExisted) {
+      const { password, ...user } = userExisted;
+      return user;
+    } else {
+      throw errors.documentNotFound;
+    }
   }
 
-  delete(_id: ObjectId) {
-    return this.userModel.findOneAndDelete({ _id });
+  async delete(id: ObjectId) {
+    const userDeleted = await this.userModel
+      .findOneAndDelete({ _id: id })
+      .lean();
+    if (userDeleted) {
+      throw errors.deletedSuccessfully;
+    } else {
+      throw errors.documentNotFound;
+    }
   }
 
   async getByEmail(email) {
@@ -45,23 +75,27 @@ export class UsersService {
   }
 
   getAll() {
-    return this.userModel.find();
+    return this.userModel.find({}, { password: 0 }).lean();
   }
 
   async createAdminIfNotExists() {
-    const adminExists = await this.userModel.findOne({
-      email: /admin@indexgroup.net/,
-    });
-    if (adminExists) {
-      Logger.log('Admin account exists', 'Custom');
-    } else {
+    const adminExists = await this.userModel
+      .findOne({
+        email: new RegExp(constants.admin.email),
+      })
+      .lean();
+    if (!adminExists) {
+      const password = await hash(
+        constants.admin.password,
+        bcryptOptions.rounds,
+      );
       await this.userModel.create({
         name: constants.admin.name,
         email: constants.admin.email,
-        password: constants.admin.password,
+        password,
         role: 'Admin',
       });
-      return Logger.log('Admin account created', 'Custom');
+      Logger.log('Admin account created', 'Custom-Log');
     }
   }
 }
