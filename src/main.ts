@@ -1,4 +1,3 @@
-import { CsrfMiddleware } from './shared/middlewares/csrf.middleware';
 import { DocumentBuilder } from '@nestjs/swagger';
 // Nest build-in modules
 import { NestFactory } from '@nestjs/core';
@@ -15,6 +14,7 @@ import { classValidatorOptions } from './shared/options/class-validator.options'
 import * as rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
 import * as csurf from 'csurf';
+// import { CsrfMiddleware } from './shared/middlewares/csrf.middleware';
 
 // Cookies parser
 import * as cookieParser from 'cookie-parser';
@@ -84,7 +84,7 @@ async function bootstrap() {
   }
   await app.listen(Number(process.env.PORT));
 
-  // Loggers
+  // Loggers [Db, Server]
   Logger.log(
     `Server start on http://localhost:${process.env.PORT}/api`,
     'Custom-Log',

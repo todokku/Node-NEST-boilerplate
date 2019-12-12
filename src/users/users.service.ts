@@ -1,17 +1,12 @@
+import { IChangePassword } from './../auth/interfaces/change-password';
 import { bcryptOptions } from '../shared/options/bcrypt.options';
 import { errors } from '../shared/constants/errors';
 import { IUser } from './interfaces/user.interface';
-import {
-  Injectable,
-  Logger,
-  HttpException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 import { constants } from '../shared/constants/constants';
 import { hash } from 'bcryptjs';
-import { throwError } from 'rxjs';
 
 @Injectable()
 export class UsersService {
@@ -38,6 +33,18 @@ export class UsersService {
       .lean();
     if (updatedUser) {
       const { password, ...finalUserObj } = updatedUser;
+      return finalUserObj;
+    } else {
+      throw errors.documentNotFound;
+    }
+  }
+
+  async changePassword(id: ObjectId, newPassword: IChangePassword) {
+    const changedPasswordUser = await this.userModel
+      .findOneAndUpdate({ _id: id }, { $set: newPassword }, { new: true })
+      .lean();
+    if (changedPasswordUser) {
+      const { password, ...finalUserObj } = changedPasswordUser;
       return finalUserObj;
     } else {
       throw errors.documentNotFound;

@@ -1,11 +1,11 @@
-import { ILocationLatLng } from './../../../dist/restaurants/interfaces/latLng.interface.d';
+import { ILocationLatLng } from './location-lat-lng.interface';
 import { Document } from 'mongoose';
 
 export interface IRestaurant extends Document {
   // id: string;
-  city: string;
-  image: string;
-  name: string;
-  email: string;
-  location: ILocationLatLng;
+  readonly city: string;
+  readonly image: string;
+  readonly name: string;
+  readonly email: string;
+  readonly location: ILocationLatLng;
 }

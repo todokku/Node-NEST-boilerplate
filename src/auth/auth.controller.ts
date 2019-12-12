@@ -1,3 +1,5 @@
+import { IUserJWT } from './interfaces/jwt-user';
+import { ChangePasswordDto } from './dto/change-password-dto';
 import { bcryptOptions } from '../shared/options/bcrypt.options';
 import { errors } from '../shared/constants/errors';
 import { RegisterNewUserDto } from './dto/register-new-user.dto';
@@ -7,6 +9,7 @@ import { UserLoginDto } from './dto/user-login.dto';
 import { ApiUseTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { Controller, Post, Body, UseGuards, Req } from '@nestjs/common';
 import { hash } from 'bcryptjs';
+import { User } from 'src/shared/decorators/user.decorator';
 
 @ApiUseTags('Authorization and Authentication')
 @Controller('auth')
@@ -41,7 +44,7 @@ export class AuthController {
   })
   async register(@Body() registerNewUserDto: RegisterNewUserDto) {
     if (registerNewUserDto.password !== registerNewUserDto.confirmPassword) {
-      throw errors.passwordNotEqualConfirmPassword;
+      throw errors.invalidPasswordConfirmation;
     } else {
       registerNewUserDto.password = await hash(
         registerNewUserDto.password,
@@ -51,6 +54,17 @@ export class AuthController {
     }
   }
 
+  @Post('profile')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  @ApiOperation({
+    title: 'Register new user',
+    description: 'End-Point for register new user',
+  })
+  profile(@User() user: IUserJWT) {
+    return this.authService.profile(user._id);
+  }
+
   @Post('change-password')
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
@@ -58,7 +72,12 @@ export class AuthController {
     title: 'Change user password',
     description: 'End-Point for change user password',
   })
-  changePassword() {
-    // return this.usersService.validateOnUser();
+  changePassword(
+    @Body() changePasswordDto: ChangePasswordDto,
+    @User() user: IUserJWT,
+  ) {
+    console.log({ changePasswordDto, user }, 1);
+
+    return this.authService.changePassword(user._id, changePasswordDto);
   }
 }

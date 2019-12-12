@@ -14,9 +14,13 @@ export const errors = {
 
   documentNotFound: new GoneException('Cannot found document with this ID'),
   invalidEmailOrPassword: new UnauthorizedException(
-    'Invalid email or password',
+    'Invalid "Email" or "Password"',
   ),
-  passwordNotEqualConfirmPassword: new ForbiddenException(
-    'Password and confirm password are not equal',
+  invalidPassword: new UnauthorizedException('Invalid email or password'),
+  invalidPasswordConfirmation: new ForbiddenException(
+    '"Password" and "Confirm password" are not equal',
+  ),
+  invalidNewPassConfirmation: new ForbiddenException(
+    '"New password" and "New confirm password" are not equal',
   ),
 };

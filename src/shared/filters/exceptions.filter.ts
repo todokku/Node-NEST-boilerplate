@@ -46,7 +46,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       exceptionConstructorName: exception.constructor.name,
       type: 'Exception-error',
       isHttpError: exception instanceof HttpException,
-      // exception,
+      exception,
     });
   }
 }
