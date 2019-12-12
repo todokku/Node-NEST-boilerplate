@@ -1,0 +1,1 @@
+{"version":3,"file":"mongoose.options.js","sourceRoot":"","sources":["../../../src/global/options/mongoose.options.ts"],"names":[],"mappings":";;AAAa,QAAA,eAAe,GAAG;IAC7B,eAAe,EAAE,IAAI;IACrB,cAAc,EAAE,IAAI;IACpB,gBAAgB,EAAE,KAAK;IACvB,kBAAkB,EAAE,IAAI;IAIxB,QAAQ,EAAE,EAAE;IACZ,gBAAgB,EAAE,CAAC;IACnB,gBAAgB,EAAE,KAAK;IACvB,eAAe,EAAE,KAAK;IACtB,MAAM,EAAE,CAAC;CACV,CAAC"}
