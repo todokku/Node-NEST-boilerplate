@@ -11,10 +11,10 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ApiUseTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 
-@ApiUseTags('Users')
+@ApiTags('Users')
 @Controller('users')
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
@@ -23,7 +23,7 @@ export class UsersController {
 
   @Post()
   @ApiOperation({
-    title: 'Create user',
+    summary: 'Create user',
     description: 'End-Point for create user',
   })
   // @ApiResponse({
@@ -37,7 +37,7 @@ export class UsersController {
 
   @Get()
   @ApiOperation({
-    title: 'Get all users',
+    summary: 'Get all users',
     description: 'End-Point for get all users',
   })
   findAll() {
@@ -46,7 +46,7 @@ export class UsersController {
 
   @Get(':_id')
   @ApiOperation({
-    title: 'Get user by id',
+    summary: 'Get user by id',
     description: 'End-Point for get user by id',
   })
   getById(@Param('_id') id: string) {
@@ -55,7 +55,7 @@ export class UsersController {
 
   @Delete(':_id')
   @ApiOperation({
-    title: 'Delete user by id',
+    summary: 'Delete user by id',
     description: 'End-Point for delete user by id',
   })
   delete(@Param('_id') id: string) {
@@ -64,7 +64,7 @@ export class UsersController {
 
   @Put(':_id')
   @ApiOperation({
-    title: 'Update user by id',
+    summary: 'Update user by id',
     description: 'End-Point for update user by id',
   })
   update(@Param('_id') id: string, @Body() updateUserDto: UpdateUserDto) {

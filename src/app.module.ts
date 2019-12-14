@@ -1,8 +1,14 @@
 // import { CsrfMiddleware } from './shared/middlewares/csrf.middleware';
-import { readFileSync } from 'fs';
+
+import { readFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { parse, config } from 'dotenv';
-config(parse(readFileSync(join(__dirname, '..', '.env'))));
+// Set .env variables to process.env
+config(parse(readFileSync(join('.', '.env'))));
+// Init upload folder
+if (!existsSync(join('.', process.env.UPLOADS_PATH))) {
+  mkdirSync(join('.', process.env.UPLOADS_PATH));
+}
 
 import { Module, MiddlewareConsumer } from '@nestjs/common';
 // import { AppController } from './app.controller';

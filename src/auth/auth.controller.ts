@@ -6,12 +6,12 @@ import { RegisterNewUserDto } from './dto/register-new-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/user-login.dto';
-import { ApiUseTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { Controller, Post, Body, UseGuards, Req } from '@nestjs/common';
 import { hash } from 'bcryptjs';
-import { User } from 'src/shared/decorators/user.decorator';
+import { User } from '../shared/decorators/user.decorator';
 
-@ApiUseTags('Authorization and Authentication')
+@ApiTags('Authorization and Authentication')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -19,7 +19,7 @@ export class AuthController {
   // @UseGuards(AuthGuard('local'))
   @Post('login')
   @ApiOperation({
-    title: 'Login user',
+    summary: 'Login user',
     description: 'End-Point for login user',
   })
   login(@Body() userLogin: UserLoginDto) {
@@ -30,7 +30,7 @@ export class AuthController {
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
   @ApiOperation({
-    title: 'Logout user',
+    summary: 'Logout user',
     description: 'End-Point for logout user',
   })
   logout(@Req() req) {
@@ -39,7 +39,7 @@ export class AuthController {
 
   @Post('register')
   @ApiOperation({
-    title: 'Register new user',
+    summary: 'Register new user',
     description: 'End-Point for register new user',
   })
   async register(@Body() registerNewUserDto: RegisterNewUserDto) {
@@ -58,7 +58,7 @@ export class AuthController {
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
   @ApiOperation({
-    title: 'Register new user',
+    summary: 'Register new user',
     description: 'End-Point for register new user',
   })
   profile(@User() user: IUserJWT) {
@@ -69,15 +69,15 @@ export class AuthController {
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
   @ApiOperation({
-    title: 'Change user password',
+    summary: 'Change user password',
     description: 'End-Point for change user password',
   })
   changePassword(
-    @Body() changePasswordDto: ChangePasswordDto,
     @User() user: IUserJWT,
+    @Body() changePasswordDto: ChangePasswordDto,
   ) {
     console.log({ changePasswordDto, user }, 1);
 
-    return this.authService.changePassword(user._id, changePasswordDto);
+    return this.authService.changePassword(user, changePasswordDto);
   }
 }

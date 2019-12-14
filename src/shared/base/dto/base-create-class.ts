@@ -1,9 +1,9 @@
 import { IsNotEmpty } from 'class-validator';
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class BaseCreateClass {
   // Name
-  @ApiModelProperty({
+  @ApiProperty({
     example: 'name',
     description: 'Name of the document',
   })

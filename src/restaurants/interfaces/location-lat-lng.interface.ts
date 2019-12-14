@@ -1,4 +1,4 @@
 export interface ILocationLatLng {
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
 }

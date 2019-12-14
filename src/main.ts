@@ -55,10 +55,11 @@ async function bootstrap() {
     app,
     new DocumentBuilder()
       .setTitle(swaggerOptions.title)
+      .setTitle(swaggerOptions.title)
       .setDescription(swaggerOptions.description)
       .addBearerAuth()
       .setVersion(swaggerOptions.version)
-      .setBasePath(swaggerOptions.basePath)
+      // .set(swaggerOptions.basePath)
       .build(),
   );
   SwaggerModule.setup(swaggerOptions.initOnPath, app, document);

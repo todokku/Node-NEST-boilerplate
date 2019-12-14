@@ -1,3 +1,4 @@
+import { bcryptOptions } from './../shared/options/bcrypt.options';
 import { ChangePasswordDto } from './dto/change-password-dto';
 import { ObjectId } from 'mongoose';
 import { errors } from '../shared/constants/errors';
@@ -6,6 +7,7 @@ import { UsersService } from './../users/users.service';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcryptjs';
+import { IUserJWT } from './interfaces/jwt-user';
 
 @Injectable()
 export class AuthService {
@@ -30,7 +32,7 @@ export class AuthService {
       if (isPassCorrect) {
         return {
           bearer_token:
-            'Bearer ' +
+            /*  'Bearer ' + */
             this.jwtService.sign({
               _id: user._id,
               email: user.email,
@@ -54,27 +56,30 @@ export class AuthService {
     return this.usersService.getById(id);
   }
 
-  async changePassword(id: string, changePasswordDto: ChangePasswordDto) {
-    console.log({ changePasswordDto, id }, 2);
-
-    const user = await this.usersService.getById(id);
-    if (user) {
-      const isValidOldPassword = await compare(
-        changePasswordDto.oldPassword,
-        user.password,
-      );
-      if (isValidOldPassword) {
-        throw errors.invalidPassword;
-      } else if (
-        changePasswordDto.newPassword !== changePasswordDto.confirmNewPassword
-      ) {
-        throw errors.invalidNewPassConfirmation;
-      } else {
-        const hashedPassword = await hash(changePasswordDto.newPassword);
-        this.usersService.changePassword(id, { password: hashedPassword });
-      }
+  async changePassword(authUser: IUserJWT, incomePasswords: ChangePasswordDto) {
+    if (incomePasswords.newPassword !== incomePasswords.confirmNewPassword) {
+      throw errors.invalidNewPassConfirmation;
     } else {
-      throw errors.invalidPassword;
+      const user = await this.usersService.getByEmail(authUser.email);
+      if (user) {
+        const isValidOldPassword = await compare(
+          incomePasswords.oldPassword,
+          user.password,
+        );
+        if (isValidOldPassword) {
+          const hashedPassword = await hash(
+            incomePasswords.newPassword,
+            bcryptOptions.rounds,
+          );
+          return await this.usersService.changePassword(authUser._id, {
+            password: hashedPassword,
+          });
+        } else {
+          throw errors.invalidPassword;
+        }
+      } else {
+        throw errors.invalidPassword;
+      }
     }
   }
 }

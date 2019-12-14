@@ -1,24 +1,24 @@
 import { IsEmail, Matches, IsEnum, IsString } from 'class-validator';
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class ChangePasswordDto {
   // Password
-  @ApiModelProperty({
+  @ApiProperty({
     example: 'oldPass',
     description: 'Old authorized password of user',
   })
   @Matches(/^.{6,}$/, { message: 'Password at least 6' })
-  oldPassword: string;
+  readonly oldPassword: string;
 
   // Password
-  @ApiModelProperty({
+  @ApiProperty({
     example: 'newPass',
   })
   @Matches(/^.{6,}$/, { message: 'Password at least 6' })
-  newPassword: string;
+  readonly newPassword: string;
 
   // Confirm password
-  @ApiModelProperty({
+  @ApiProperty({
     example: 'newPass',
   })
   @Matches(/^.{6,}$/, { message: 'Password at least 6' })

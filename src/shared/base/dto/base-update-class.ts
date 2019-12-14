@@ -1,9 +1,9 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { IsMongoId, IsNumber, IsNotEmpty } from 'class-validator';
 
 export class BaseUpdateClass {
   // Id
-  @ApiModelProperty({
+  @ApiProperty({
     example: '000000000000000000000000',
     description:
       'Mongo id of the document, Hex [0-9a-f], 24 letter alphanumeric',
@@ -12,7 +12,7 @@ export class BaseUpdateClass {
   readonly _id?: string;
 
   // Version
-  @ApiModelProperty({
+  @ApiProperty({
     example: 0,
     description: 'Version of the document',
   })
@@ -20,7 +20,7 @@ export class BaseUpdateClass {
   readonly __v?: number;
 
   // Name
-  @ApiModelProperty({
+  @ApiProperty({
     example: 'document name',
     description: 'Name of the document',
   })

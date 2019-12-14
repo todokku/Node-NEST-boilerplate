@@ -1,26 +1,26 @@
 import { IsEmail, Matches, IsEnum, IsString } from 'class-validator';
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class RegisterNewUserDto {
   // Name
-  @ApiModelProperty({ example: 'user name' })
+  @ApiProperty({ example: 'user name' })
   @IsString()
   readonly name: string;
 
   // Email
-  @ApiModelProperty({ example: 'user@mail.com' })
+  @ApiProperty({ example: 'user@mail.com' })
   @IsEmail()
   readonly email: string;
 
   // Password
-  @ApiModelProperty({
+  @ApiProperty({
     example: 'password123',
   })
   @Matches(/^.{6,}$/, { message: 'Password at least 6' })
   password: string;
 
   // Confirm password
-  @ApiModelProperty({
+  @ApiProperty({
     example: 'password123',
   })
   @Matches(/^.{6,}$/, { message: 'Password at least 6' })

@@ -15,13 +15,9 @@ import {
   UseInterceptors,
   CacheInterceptor,
 } from '@nestjs/common';
-import {
-  ApiUseTags,
-  ApiBearerAuth,
-  ApiOperation,
-} from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
-@ApiUseTags('Cities')
+@ApiTags('Cities')
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 @UseInterceptors(CacheInterceptor)
@@ -31,7 +27,7 @@ export class CitiesController {
 
   @Post()
   @ApiOperation({
-    title: 'Create city',
+    summary: 'Create city',
     description: 'End-Point for create city',
   })
   // @ApiResponse({
@@ -45,7 +41,7 @@ export class CitiesController {
 
   @Get()
   @ApiOperation({
-    title: 'Get all cities',
+    summary: 'Get all cities',
     description: 'End-Point for get all cities',
   })
   findAll() {
@@ -54,28 +50,28 @@ export class CitiesController {
 
   @Get(':_id')
   @ApiOperation({
-    title: 'Get city by id',
+    summary: 'Get city by id',
     description: 'End-Point for get city by id',
   })
-  getById(@Param('_id') _id: ObjectId) {
-    return this.citiesService.getById(_id);
+  getById(@Param('_id') id: string) {
+    return this.citiesService.getById(id);
   }
 
   @Delete(':_id')
   @ApiOperation({
-    title: 'Delete city by id',
+    summary: 'Delete city by id',
     description: 'End-Point for delete city by id',
   })
-  delete(@Param('_id') _id: ObjectId) {
-    return this.citiesService.delete(_id);
+  delete(@Param('_id') id: string) {
+    return this.citiesService.delete(id);
   }
 
   @Put(':_id')
   @ApiOperation({
-    title: 'Update city by id',
+    summary: 'Update city by id',
     description: 'End-Point for update city by id',
   })
-  update(@Param('_id') _id: ObjectId, @Body() updateCityDto: UpdateCityDto) {
-    return this.citiesService.update(_id, updateCityDto);
+  update(@Param('_id') id: string, @Body() updateCityDto: UpdateCityDto) {
+    return this.citiesService.update(id, updateCityDto);
   }
 }
