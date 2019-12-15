@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const rate_limit_options_1 = require("./shared/options/rate-limit.options");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const dotenv_1 = require("dotenv");
@@ -41,10 +42,7 @@ async function bootstrap() {
         .build());
     swagger_1.SwaggerModule.setup(swagger_options_1.swaggerOptions.initOnPath, app, document);
     app.use(helmet());
-    app.use(rateLimit({
-        windowMs: 15 * 60 * 1000,
-        max: 100,
-    }));
+    app.use(rateLimit(rate_limit_options_1.rateLimitOptions));
     if (!process.env.PORT) {
         process.env.PORT = '80';
     }

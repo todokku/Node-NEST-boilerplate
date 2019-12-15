@@ -1921,6 +1921,10 @@
         "version": "1ad413d1ba448085bd44e9a36b7626ced7a94436277901f8f7eacd4969ee3fd1",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88"
       },
+      "../src/shared/options/rate-limit.options.ts": {
+        "version": "693d27043aa53e7051c97d55075b66387f197bfde5e9a219dbb7a7195baeee5d",
+        "signature": "e3e15de660c3f67cd362a5176cbebd51a8476b0d16baf6548658b6f5741fb34f"
+      },
       "../node_modules/dotenv/types/index.d.ts": {
         "version": "c9ae0b351a07b52f29a28e869d8c7c8d29743bbb5eeddc7c0b5b2a69a2450528",
         "signature": "c9ae0b351a07b52f29a28e869d8c7c8d29743bbb5eeddc7c0b5b2a69a2450528"
@@ -1938,7 +1942,7 @@
         "signature": "88e820b0c6ce306956b763fbcd6dcefee33e0ae8acf2bfc8854c57b417ed73db"
       },
       "../src/main.ts": {
-        "version": "61245405adf0978b3975771e5fab9fdf86306bd29629803de9668327de162fe6",
+        "version": "46fe05cb8f31483a416c8cc01d43c446acccd1310a307fadcbece4764bdfd00c",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "../src/shared/interceptors/hidden-password-field.interceptor.ts": {
@@ -5971,6 +5975,12 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/shared/options/rate-limit.options.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../node_modules/dotenv/types/index.d.ts": [
         "../node_modules/@types/node/ts3.2/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
@@ -5999,6 +6009,7 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../src/main.ts": [
+        "../src/shared/options/rate-limit.options.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/path.d.ts",
         "../node_modules/dotenv/types/index.d.ts",
@@ -10329,6 +10340,7 @@
       "../node_modules/class-validator/metadata/metadatastorage.d.ts",
       "../node_modules/class-validator/index.d.ts",
       "../src/shared/base/dto/base-update-class.ts",
+      "../src/cities/dto/update-city.dto.ts",
       "../src/cities/dto/create-city.dto.ts",
       "../src/shared/decorators/roles.decorator.ts",
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts",
@@ -10462,11 +10474,14 @@
       "../node_modules/@nestjs/serve-static/dist/serve-static.providers.d.ts",
       "../node_modules/@nestjs/serve-static/dist/index.d.ts",
       "../node_modules/@nestjs/serve-static/index.d.ts",
+      "../src/app.module.ts",
       "../node_modules/dotenv/types/index.d.ts",
       "../src/shared/options/swagger.options.ts",
       "../src/shared/options/class-validator.options.ts",
       "../src/shared/filters/exceptions.filter.ts",
       "../src/main.ts",
+      "../src/shared/interceptors/hidden-password-field.interceptor.ts",
+      "../src/shared/interceptors/mongo-point-to-object.interceptor.ts",
       "../src/shared/middlewares/csrf.middleware.ts",
       "../node_modules/@types/anymatch/index.d.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
@@ -10499,7 +10514,8 @@
       "../node_modules/@types/webpack-sources/index.d.ts",
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
-      "../node_modules/@types/yargs/index.d.ts"
+      "../node_modules/@types/yargs/index.d.ts",
+      "../src/shared/options/rate-limit.options.ts"
     ]
   },
   "version": "3.7.2"

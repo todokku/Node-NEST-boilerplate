@@ -1,3 +1,4 @@
+import { rateLimitOptions } from './shared/options/rate-limit.options';
 // Build-in Node modules
 import { readFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
@@ -82,13 +83,7 @@ async function bootstrap() {
 
   // Security
   app.use(helmet()); // protect app from some vulnerabilities by setting HTTP headers appropriately
-  app.use(
-    // Add a limitation on hit Server
-    rateLimit({
-      windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 100, // limit each IP to 100 requests per windowMs
-    }),
-  );
+  app.use(rateLimit(rateLimitOptions)); // Add a limitation on hit Server
   // app.useGlobalGuards(AuthGuard('jwt'), new RolesGuard());
   // app.use(csurf({ cookie: true })); // Cross-site request forgery: is a type of malicious exploit of a website
   // app.use(CsrfMiddleware); // Cross-site request forgery: is a type of malicious exploit of a website
