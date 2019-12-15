@@ -1738,7 +1738,7 @@
         "signature": "0d4ee6dc358e9a74121d75df8504ff5a53568e05f9819309e88923efe8e9f7da"
       },
       "../src/restaurants/restaurants.controller.ts": {
-        "version": "7bbbe81f06c5413b17866509740e77eb8aad2ad1541ad1fd33cfd2edbb325ace",
+        "version": "2e687913668ff7adf97e3b4e5f87bb37f3ed71b2b2815d82dbc3546fe4c5c288",
         "signature": "2405ee808af6e666a189dbfcd66e942c46d64d24ca432910e7f3049668818241"
       },
       "../src/shared/schemas/geo-point.schema.ts": {
@@ -5560,6 +5560,7 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../src/restaurants/restaurants.controller.ts": [
+        "../src/restaurants/interfaces/mongo-point.interface.ts",
         "../src/restaurants/dto/search-restaurant.dto.ts",
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/platform-express/index.d.ts",
@@ -10395,7 +10396,6 @@
       "../src/restaurants/interfaces/mongo-point.interface.ts",
       "../src/restaurants/dto/location.dto.ts",
       "../src/restaurants/interfaces/restaurant.interface.ts",
-      "../src/restaurants/restaurants.service.ts",
       "../src/restaurants/dto/search-restaurant.dto.ts",
       "../node_modules/@nestjs/platform-express/interfaces/serve-static-options.interface.d.ts",
       "../node_modules/@nestjs/platform-express/adapters/express-adapter.d.ts",
@@ -10475,6 +10475,7 @@
       "../node_modules/@nestjs/serve-static/dist/index.d.ts",
       "../node_modules/@nestjs/serve-static/index.d.ts",
       "../src/app.module.ts",
+      "../src/shared/options/rate-limit.options.ts",
       "../node_modules/dotenv/types/index.d.ts",
       "../src/shared/options/swagger.options.ts",
       "../src/shared/options/class-validator.options.ts",
@@ -10515,7 +10516,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/shared/options/rate-limit.options.ts"
+      "../src/restaurants/restaurants.service.ts"
     ]
   },
   "version": "3.7.2"

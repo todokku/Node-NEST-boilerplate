@@ -1,3 +1,4 @@
+import { IMongoPoint } from './interfaces/mongo-point.interface';
 import { RestaurantsSearchDto } from './dto/search-restaurant.dto';
 // Nest modules
 import {
