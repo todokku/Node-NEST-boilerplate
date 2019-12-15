@@ -13,11 +13,11 @@ import { ValidationError } from 'class-validator';
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: any /* unknown */, host: ArgumentsHost) {
-    console.log({
-      exceptionConstructorName: exception.constructor.name,
-      isHttpError: exception instanceof HttpException,
-      exception,
-    });
+    // console.log({
+    //   exceptionConstructorName: exception.constructor.name,
+    //   isHttpError: exception instanceof HttpException,
+    //   exception,
+    // });
 
     const ctx = host.switchToHttp();
     const req = ctx.getRequest();
@@ -26,6 +26,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     let json = {
       // timestamp: new Date().toISOString(),
       path: req.url,
+      error: undefined,
       statusCode: exception.status,
       message: null,
       key: undefined,
@@ -50,9 +51,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
         }
       }
     } else if (exception instanceof TypeError) {
-      // json.message = exception.message;
-      throw new InternalServerErrorException();
-      console.log({ exceptionMessage: exception.message }, 'hello');
+      json.error = 'Not Found';
+      json.statusCode = 404;
+      // json.message= exception.message;
     } else if (exception.constructor.name === 'MongoError') {
       if ([11000, 11001].indexOf(exception.code) >= 0) {
         json.statusCode = HttpStatus.CONFLICT;
@@ -66,7 +67,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
     } else {
       json.message = exception.message;
     }
-
     res.status(json.statusCode).json(json);
   }
 }

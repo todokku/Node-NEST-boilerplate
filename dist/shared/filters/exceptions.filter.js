@@ -10,16 +10,12 @@ const common_1 = require("@nestjs/common");
 const class_validator_1 = require("class-validator");
 let AllExceptionsFilter = class AllExceptionsFilter {
     catch(exception, host) {
-        console.log({
-            exceptionConstructorName: exception.constructor.name,
-            isHttpError: exception instanceof common_1.HttpException,
-            exception,
-        });
         const ctx = host.switchToHttp();
         const req = ctx.getRequest();
         const res = ctx.getResponse();
         let json = {
             path: req.url,
+            error: undefined,
             statusCode: exception.status,
             message: null,
             key: undefined,
@@ -39,8 +35,8 @@ let AllExceptionsFilter = class AllExceptionsFilter {
             }
         }
         else if (exception instanceof TypeError) {
-            throw new common_1.InternalServerErrorException();
-            console.log({ exceptionMessage: exception.message }, 'hello');
+            json.error = 'Not Found';
+            json.statusCode = 404;
         }
         else if (exception.constructor.name === 'MongoError') {
             if ([11000, 11001].indexOf(exception.code) >= 0) {

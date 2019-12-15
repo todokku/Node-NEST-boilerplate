@@ -84,11 +84,19 @@ export class RestaurantsController {
   }
 
   @Post('nearest')
+  @ApiOperation({
+    summary: 'Find the nearest restaurant',
+    description: 'End-Point for Find the nearest restaurant from a point',
+  })
   nearestRestaurant(@Body(new ObjectToMongoPointPipe()) body: LocationDto) {
     return this.restaurantsService.nearestRestaurant(body);
   }
 
   @Post('search')
+  @ApiOperation({
+    summary: 'Search restaurant name',
+    description: 'End-Point for Search for restaurant with it is name',
+  })
   search(
     @Body()
     body: RestaurantsSearchDto,
@@ -97,6 +105,11 @@ export class RestaurantsController {
   }
 
   @Get('groupByCity')
+  @ApiOperation({
+    summary: 'Group restaurants and statistics about them within the city',
+    description:
+      'End-Point for Statistics about restaurants with city relation restaurant name',
+  })
   groupByCity() {
     return this.restaurantsService.groupByCity();
   }

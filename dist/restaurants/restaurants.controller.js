@@ -88,6 +88,10 @@ __decorate([
 ], RestaurantsController.prototype, "findAll", null);
 __decorate([
     common_1.Post('nearest'),
+    swagger_1.ApiOperation({
+        summary: 'Find the nearest restaurant',
+        description: 'End-Point for Find the nearest restaurant from a point',
+    }),
     __param(0, common_1.Body(new object_to_mongo_point_pipe_1.ObjectToMongoPointPipe())),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [location_dto_1.LocationDto]),
@@ -95,6 +99,10 @@ __decorate([
 ], RestaurantsController.prototype, "nearestRestaurant", null);
 __decorate([
     common_1.Post('search'),
+    swagger_1.ApiOperation({
+        summary: 'Search restaurant name',
+        description: 'End-Point for Search for restaurant with it is name',
+    }),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [search_restaurant_dto_1.RestaurantsSearchDto]),
@@ -102,6 +110,10 @@ __decorate([
 ], RestaurantsController.prototype, "search", null);
 __decorate([
     common_1.Get('groupByCity'),
+    swagger_1.ApiOperation({
+        summary: 'Group restaurants and statistics about them within the city',
+        description: 'End-Point for Statistics about restaurants with city relation restaurant name',
+    }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
