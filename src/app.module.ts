@@ -8,7 +8,6 @@ import { AuthModule } from './auth/auth.module';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
-
 @Module({
   imports: [
     /* Mongoose DB connection Init */
@@ -16,14 +15,14 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 
     // Serve static files at Public [eg: index.html, uploads]
     ServeStaticModule.forRoot({
-      rootPath: join('.', 'public'),
+      rootPath: join('.', 'public')
     }),
 
     /* App Modules */
     AuthModule,
     UsersModule,
     CitiesModule,
-    RestaurantsModule,
-  ],
+    RestaurantsModule
+  ]
 })
 export class AppModule {}

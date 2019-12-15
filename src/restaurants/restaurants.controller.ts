@@ -125,7 +125,7 @@ export class RestaurantsController {
     summary: 'Update restaurant by id',
     description: 'End-Point for update restaurant by id',
   })
-  @UseInterceptors(FileInterceptor('image' /* ,{ dest: './upload', } */))
+  @UseInterceptors(FileInterceptor('image'))
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: UpdateRestaurantDto })
   update(

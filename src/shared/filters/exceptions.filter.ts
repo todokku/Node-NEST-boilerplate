@@ -6,27 +6,34 @@ import {
   HttpStatus,
   Logger,
   BadRequestException,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { ValidationError } from 'class-validator';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: any /* unknown */, host: ArgumentsHost) {
+    console.log({
+      exceptionConstructorName: exception.constructor.name,
+      isHttpError: exception instanceof HttpException,
+      exception,
+    });
+
     const ctx = host.switchToHttp();
-    const response = ctx.getResponse();
-    const request = ctx.getRequest();
-    let jsonResponse = {
+    const req = ctx.getRequest();
+    const res = ctx.getResponse();
+
+    let json = {
       // timestamp: new Date().toISOString(),
-      path: request.url,
+      path: req.url,
       statusCode: exception.status,
       message: null,
       key: undefined,
       value: undefined,
     };
-
     if (exception instanceof HttpException) {
-      jsonResponse.statusCode = exception.getStatus();
-      jsonResponse = exception.message;
+      json.statusCode = exception.getStatus();
+      json = exception.message;
 
       // Class validator handler
       if (exception instanceof BadRequestException) {
@@ -35,34 +42,31 @@ export class AllExceptionsFilter implements ExceptionFilter {
           Array.isArray(exception.message.message) &&
           exception.message.message[0] instanceof ValidationError
         ) {
-          jsonResponse.key = exception.message.message[0].property;
-          jsonResponse.value = exception.message.message[0].value;
-          jsonResponse.message = Object.values(
+          json.key = exception.message.message[0].property;
+          json.value = exception.message.message[0].value;
+          json.message = Object.values(
             exception.message.message[0].constraints,
           )[0];
         }
       }
+    } else if (exception instanceof TypeError) {
+      // json.message = exception.message;
+      throw new InternalServerErrorException();
+      console.log({ exceptionMessage: exception.message }, 'hello');
     } else if (exception.constructor.name === 'MongoError') {
       if ([11000, 11001].indexOf(exception.code) >= 0) {
-        jsonResponse.statusCode = HttpStatus.CONFLICT;
+        json.statusCode = HttpStatus.CONFLICT;
 
         const keyBasic = /(!?index: )([\w."]+)/.exec(exception.message);
         const valueBasic = /({ : )([('")\w@.]+)/.exec(exception.message);
-        jsonResponse.key = keyBasic && keyBasic[2];
-        jsonResponse.value = valueBasic && valueBasic[2];
-        jsonResponse.message = 'Duplication Error';
+        json.key = keyBasic && keyBasic[2];
+        json.value = valueBasic && valueBasic[2];
+        json.message = 'Duplication Error';
       }
     } else {
-      jsonResponse.message = exception.message;
+      json.message = exception.message;
     }
 
-    response.status(jsonResponse.statusCode).json(jsonResponse);
-
-    Logger.log({
-      exceptionConstructorName: exception.constructor.name,
-      type: 'Exception-error',
-      isHttpError: exception instanceof HttpException,
-      exception,
-    });
+    res.status(json.statusCode).json(json);
   }
 }

@@ -1,6 +1,6 @@
 // Build-in Node modules
 import { readFileSync, existsSync, mkdirSync } from 'fs';
-import { join  } from 'path';
+import { join } from 'path';
 import { parse, config } from 'dotenv';
 
 // Set .env variables to process.env
@@ -9,11 +9,10 @@ config(parse(readFileSync(join('.', '.env'))));
 // Init upload folder if not exist
 if (!existsSync(join('.', 'public'))) {
   mkdirSync(join('.', 'public'));
-  if (!existsSync(join('.', 'public', process.env.UPLOADS_PATH))) {
-    mkdirSync(join('.', 'public', process.env.UPLOADS_PATH));
-  }
 }
-
+if (!existsSync(join('.', 'public', process.env.UPLOADS_PATH))) {
+  mkdirSync(join('.', 'public', process.env.UPLOADS_PATH));
+}
 // Build-in Nest modules
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
@@ -48,7 +47,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     // cors: true,
-    logger: ['error', 'warn']
+    logger: ['error', 'warn'],
   });
 
   // Set global prefix before all mapped routes
@@ -77,7 +76,7 @@ async function bootstrap() {
       .setDescription(swaggerOptions.description)
       .addBearerAuth()
       .setVersion(swaggerOptions.version)
-      .build()
+      .build(),
   );
   SwaggerModule.setup(swaggerOptions.initOnPath, app, document);
 
@@ -87,8 +86,8 @@ async function bootstrap() {
     // Add a limitation on hit Server
     rateLimit({
       windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 100 // limit each IP to 100 requests per windowMs
-    })
+      max: 100, // limit each IP to 100 requests per windowMs
+    }),
   );
   // app.useGlobalGuards(AuthGuard('jwt'), new RolesGuard());
   // app.use(csurf({ cookie: true })); // Cross-site request forgery: is a type of malicious exploit of a website
@@ -103,7 +102,7 @@ async function bootstrap() {
   // Loggers [Db, Server]
   Logger.log(
     `Server start on http://localhost:${process.env.PORT}/api`,
-    'Custom-Log'
+    'Custom-Log',
   );
   const isLocalDb = /\/?\/?(localhost|127.0.0.1):?/i.test(process.env.DB_URI);
   Logger.log(`Connected to ${isLocalDb ? 'local' : 'online'} DB`, 'Custom-Log');

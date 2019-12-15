@@ -8,14 +8,14 @@ export function uploadFile({ uploadedFileType, file }) {
   if (filesUpload[uploadedFileType].mimesType.indexOf(file.mimetype) + 1) {
     // validate on file size
     if (file.size <= filesUpload[uploadedFileType].maximumSize) {
-      // concat unique number with uploaded file type
+      // concat unique 'number' with uploaded 'file-type'
       const fileName = `${new Date().getTime()}.${
         /[a-z\d]+$/i.exec(file.originalname)[0]
       }`;
 
       // Save file
       writeFileSync(
-        join('.', process.env.UPLOADS_PATH, fileName),
+        join('.', 'public', process.env.UPLOADS_PATH, fileName),
         file.buffer,
         'ascii',
       );
