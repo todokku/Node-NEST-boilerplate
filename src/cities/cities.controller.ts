@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongoose';
 import { AuthGuard } from '@nestjs/passport';
 import { UpdateCityDto } from './dto/update-city.dto';
 import { CreateCityDto } from './dto/create-city.dto';
@@ -16,9 +15,11 @@ import {
   CacheInterceptor,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import { Roles } from 'src/shared/decorators/roles.decorator';
+import { RolesGuard } from '../shared/guards/roles.guard';
 
 @ApiTags('Cities')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 @ApiBearerAuth()
 @UseInterceptors(CacheInterceptor)
 @Controller('cities')
@@ -26,6 +27,7 @@ export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
 
   @Post()
+  @Roles('admin')
   @ApiOperation({
     summary: 'Create city',
     description: 'End-Point for create city',
@@ -49,6 +51,7 @@ export class CitiesController {
   }
 
   @Get(':_id')
+  @Roles('admin')
   @ApiOperation({
     summary: 'Get city by id',
     description: 'End-Point for get city by id',
@@ -58,6 +61,7 @@ export class CitiesController {
   }
 
   @Delete(':_id')
+  @Roles('admin')
   @ApiOperation({
     summary: 'Delete city by id',
     description: 'End-Point for delete city by id',
@@ -67,6 +71,7 @@ export class CitiesController {
   }
 
   @Put(':_id')
+  @Roles('admin')
   @ApiOperation({
     summary: 'Update city by id',
     description: 'End-Point for update city by id',

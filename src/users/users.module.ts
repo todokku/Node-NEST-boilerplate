@@ -6,11 +6,11 @@ import { Module } from '@nestjs/common';
 
 @Module({
   imports: [
-    // DatabaseModule,
+    // Register user model at mongoose
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
   ],
   controllers: [UsersController],
-  providers: [UsersService /* , ...usersProviders */],
+  providers: [UsersService],
   exports: [UsersService],
 })
 export class UsersModule {}

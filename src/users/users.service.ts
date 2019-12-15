@@ -18,7 +18,7 @@ export class UsersService {
   }
 
   async create(user: IUser) {
-    const { password, role, ...newUser } = (
+    const { password, roles, ...newUser } = (
       await this.userModel.create(user)
     )._doc;
     return newUser;
@@ -100,7 +100,7 @@ export class UsersService {
         name: constants.admin.name,
         email: constants.admin.email,
         password,
-        role: 'Admin',
+        roles: constants.admin.roles,
       });
       Logger.log('Admin account created', 'Custom-Log');
     }

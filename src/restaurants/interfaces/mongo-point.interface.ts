@@ -1,4 +1,4 @@
 export interface IMongoPoint {
   type: string;
-  coordinates: [number];
+  coordinates: number[];
 }

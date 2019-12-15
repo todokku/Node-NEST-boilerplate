@@ -1,3 +1,4 @@
+import { RestaurantsSearchDto } from './dto/search-restaurant.dto';
 // Nest modules
 import {
   Controller,
@@ -36,18 +37,22 @@ import { ParseToObjectPipe } from '../shared/pipes/parse-to-object.pipe';
 import { JoiValidatorPipe } from '../shared/pipes/joi-validator.pipe';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from '../shared/guards/roles.guard';
+import { Roles } from 'src/shared/decorators/roles.decorator';
+import { LocationDto } from './dto/location.dto';
 
 // // Constants
 // const locationFiledName = 'location';
 
 @ApiTags('Restaurants')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 @ApiBearerAuth()
 @Controller('restaurants')
 export class RestaurantsController {
   constructor(private readonly restaurantsService: RestaurantsService) {}
 
   @Post()
+  @Roles('admin')
   @ApiOperation({
     summary: 'Create restaurant',
     description: 'End-Point for create restaurant',
@@ -77,6 +82,24 @@ export class RestaurantsController {
     return this.restaurantsService.getAll();
   }
 
+  @Post('nearest')
+  nearestRestaurant(@Body(new ObjectToMongoPointPipe()) body: LocationDto) {
+    return this.restaurantsService.nearestRestaurant(body);
+  }
+
+  @Post('search')
+  search(
+    @Body()
+    body: RestaurantsSearchDto,
+  ) {
+    return this.restaurantsService.search(body.name);
+  }
+
+  @Get('groupByCity')
+  groupByCity() {
+    return this.restaurantsService.groupByCity();
+  }
+
   @Get(':_id')
   @ApiOperation({
     summary: 'Get restaurant by id',
@@ -87,6 +110,7 @@ export class RestaurantsController {
   }
 
   @Delete(':_id')
+  @Roles('admin')
   @ApiOperation({
     summary: 'Delete restaurant by id',
     description: 'End-Point for delete restaurant by id',
@@ -96,6 +120,7 @@ export class RestaurantsController {
   }
 
   @Put(':_id')
+  @Roles('admin')
   @ApiOperation({
     summary: 'Update restaurant by id',
     description: 'End-Point for update restaurant by id',

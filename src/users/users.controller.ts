@@ -1,3 +1,4 @@
+import { RolesGuard } from './../shared/guards/roles.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
@@ -13,15 +14,17 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
+import { Roles } from 'src/shared/decorators/roles.decorator';
 
 @ApiTags('Users')
 @Controller('users')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
 @ApiBearerAuth()
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
+  @Roles('admin')
   @ApiOperation({
     summary: 'Create user',
     description: 'End-Point for create user',
@@ -36,6 +39,7 @@ export class UsersController {
   }
 
   @Get()
+  @Roles('admin')
   @ApiOperation({
     summary: 'Get all users',
     description: 'End-Point for get all users',
@@ -45,6 +49,7 @@ export class UsersController {
   }
 
   @Get(':_id')
+  @Roles('admin')
   @ApiOperation({
     summary: 'Get user by id',
     description: 'End-Point for get user by id',
@@ -54,6 +59,7 @@ export class UsersController {
   }
 
   @Delete(':_id')
+  @Roles('admin')
   @ApiOperation({
     summary: 'Delete user by id',
     description: 'End-Point for delete user by id',
@@ -63,6 +69,7 @@ export class UsersController {
   }
 
   @Put(':_id')
+  @Roles('admin')
   @ApiOperation({
     summary: 'Update user by id',
     description: 'End-Point for update user by id',

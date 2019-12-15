@@ -10,8 +10,9 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { Controller, Post, Body, UseGuards, Req } from '@nestjs/common';
 import { hash } from 'bcryptjs';
 import { User } from '../shared/decorators/user.decorator';
+import { RolesGuard } from '../shared/guards/roles.guard';
 
-@ApiTags('Authorization and Authentication')
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -34,7 +35,8 @@ export class AuthController {
     description: 'End-Point for logout user',
   })
   logout(@Req() req) {
-    return (req.cookies.jwt = { maxAge: Date.now() });
+    req.cookies.jwt = { maxAge: Date.now() };
+    return {};
   }
 
   @Post('register')
@@ -76,8 +78,6 @@ export class AuthController {
     @User() user: IUserJWT,
     @Body() changePasswordDto: ChangePasswordDto,
   ) {
-    console.log({ changePasswordDto, user }, 1);
-
     return this.authService.changePassword(user, changePasswordDto);
   }
 }

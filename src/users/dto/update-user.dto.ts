@@ -1,7 +1,7 @@
 import { UserRoles } from './../enum/roles.enums';
 import { BaseUpdateClass } from '../../shared/base/dto/base-update-class';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, Matches, IsEnum, IsString } from 'class-validator';
+import { IsEmail, Matches, IsEnum, IsString, IsArray } from 'class-validator';
 
 export class UpdateUserDto extends BaseUpdateClass {
   // Name
@@ -15,7 +15,8 @@ export class UpdateUserDto extends BaseUpdateClass {
   email: string;
 
   // Role
-  @ApiProperty({ enum: ['Admin', 'User'] })
-  @IsEnum({ user: 'User', admin: 'Admin' })
-  role: UserRoles;
+  @ApiProperty({ enum: ['admin', 'user'] })
+  @IsEnum({ user: 'user', admin: 'admin' })
+  @IsArray()
+  roles: [UserRoles];
 }

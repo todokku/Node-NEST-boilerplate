@@ -26,7 +26,7 @@ export class CreateUserDto extends BaseCreateClass {
 
   // Role
   // @isArray()
-  // @IsEnum({ user: 'User', admin: 'Admin' })
-  @ApiProperty({ /* type: UserRoles, */ enum: UserRoles })
-  role: UserRoles;
+  // @IsEnum({ user: 'user', admin: 'admin' })
+  @ApiProperty({ enum: UserRoles })
+  roles: [UserRoles];
 }

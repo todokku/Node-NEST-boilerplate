@@ -5,7 +5,9 @@ import {
   HttpException,
   HttpStatus,
   Logger,
+  BadRequestException,
 } from '@nestjs/common';
+import { ValidationError } from 'class-validator';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -13,22 +15,36 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
-    let status = HttpStatus.INTERNAL_SERVER_ERROR;
     let jsonResponse = {
       // timestamp: new Date().toISOString(),
       path: request.url,
-      statusCode: null,
+      statusCode: exception.status,
       message: null,
       key: undefined,
       value: undefined,
     };
 
     if (exception instanceof HttpException) {
-      status = exception.getStatus();
+      jsonResponse.statusCode = exception.getStatus();
       jsonResponse = exception.message;
+
+      // Class validator handler
+      if (exception instanceof BadRequestException) {
+        if (
+          exception.message &&
+          Array.isArray(exception.message.message) &&
+          exception.message.message[0] instanceof ValidationError
+        ) {
+          jsonResponse.key = exception.message.message[0].property;
+          jsonResponse.value = exception.message.message[0].value;
+          jsonResponse.message = Object.values(
+            exception.message.message[0].constraints,
+          )[0];
+        }
+      }
     } else if (exception.constructor.name === 'MongoError') {
       if ([11000, 11001].indexOf(exception.code) >= 0) {
-        status = HttpStatus.CONFLICT;
+        jsonResponse.statusCode = HttpStatus.CONFLICT;
 
         const keyBasic = /(!?index: )([\w."]+)/.exec(exception.message);
         const valueBasic = /({ : )([('")\w@.]+)/.exec(exception.message);
@@ -40,7 +56,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       jsonResponse.message = exception.message;
     }
 
-    response.status(status).json(jsonResponse);
+    response.status(jsonResponse.statusCode).json(jsonResponse);
 
     Logger.log({
       exceptionConstructorName: exception.constructor.name,

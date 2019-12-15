@@ -1,10 +1,25 @@
-import { DocumentBuilder } from '@nestjs/swagger';
-// Nest build-in modules
+// Build-in Node modules
+import { readFileSync, existsSync, mkdirSync } from 'fs';
+import { join  } from 'path';
+import { parse, config } from 'dotenv';
+
+// Set .env variables to process.env
+config(parse(readFileSync(join('.', '.env'))));
+
+// Init upload folder if not exist
+if (!existsSync(join('.', 'public'))) {
+  mkdirSync(join('.', 'public'));
+  if (!existsSync(join('.', 'public', process.env.UPLOADS_PATH))) {
+    mkdirSync(join('.', 'public', process.env.UPLOADS_PATH));
+  }
+}
+
+// Build-in Nest modules
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
 
 // API documentations
-import { SwaggerModule } from '@nestjs/swagger';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { swaggerOptions } from './shared/options/swagger.options';
 
 // API Validation
@@ -13,8 +28,10 @@ import { classValidatorOptions } from './shared/options/class-validator.options'
 // Security
 import * as rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
-import * as csurf from 'csurf';
-// import { CsrfMiddleware } from './shared/middlewares/csrf.middleware';
+// import { AuthGuard } from '@nestjs/passport';
+// import { RolesGuard } from './shared/guards/roles.guard';
+// import * as csurf from 'csurf';
+// import { CsrfMiddleware } from './shared/middle-wares/csrf.middleware';
 
 // Cookies parser
 import * as cookieParser from 'cookie-parser';
@@ -26,11 +43,12 @@ import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './shared/filters/exceptions.filter';
 
 import * as compression from 'compression';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     // cors: true,
-    logger: ['error', 'warn'],
+    logger: ['error', 'warn']
   });
 
   // Set global prefix before all mapped routes
@@ -39,7 +57,7 @@ async function bootstrap() {
   // Global exceptions filter: handle all exceptions
   app.useGlobalFilters(new AllExceptionsFilter());
 
-  // Security: Register validator class-validator
+  // Validation: Register validator class-validator
   app.useGlobalPipes(new ValidationPipe(classValidatorOptions));
 
   // Cookie parser: parse income header cookies
@@ -59,25 +77,22 @@ async function bootstrap() {
       .setDescription(swaggerOptions.description)
       .addBearerAuth()
       .setVersion(swaggerOptions.version)
-      // .set(swaggerOptions.basePath)
-      .build(),
+      .build()
   );
   SwaggerModule.setup(swaggerOptions.initOnPath, app, document);
 
-  // Security: protect app from some vulnerabilities by setting HTTP headers appropriately
-  app.use(helmet());
-
-  // Security: Add a limitation on hit Server
+  // Security
+  app.use(helmet()); // protect app from some vulnerabilities by setting HTTP headers appropriately
   app.use(
+    // Add a limitation on hit Server
     rateLimit({
       windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 100, // limit each IP to 100 requests per windowMs
-    }),
+      max: 100 // limit each IP to 100 requests per windowMs
+    })
   );
-
-  // Security: Cross-site request forgery: is a type of malicious exploit of a website
-  // app.use(csurf({ cookie: true }));
-  // app.use(CsrfMiddleware);
+  // app.useGlobalGuards(AuthGuard('jwt'), new RolesGuard());
+  // app.use(csurf({ cookie: true })); // Cross-site request forgery: is a type of malicious exploit of a website
+  // app.use(CsrfMiddleware); // Cross-site request forgery: is a type of malicious exploit of a website
 
   // Check port and listen on it
   if (!process.env.PORT) {
@@ -88,9 +103,9 @@ async function bootstrap() {
   // Loggers [Db, Server]
   Logger.log(
     `Server start on http://localhost:${process.env.PORT}/api`,
-    'Custom-Log',
+    'Custom-Log'
   );
-  const isLocalDb = /\/?\/?localhost|127.0.0.1:?/i.test(process.env.DB_URI);
+  const isLocalDb = /\/?\/?(localhost|127.0.0.1):?/i.test(process.env.DB_URI);
   Logger.log(`Connected to ${isLocalDb ? 'local' : 'online'} DB`, 'Custom-Log');
 }
 bootstrap();

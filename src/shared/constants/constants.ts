@@ -1,7 +1,8 @@
 export const constants = {
   admin: {
-    name: 'Admin',
+    name: 'admin',
     email: 'admin@index-group.net',
     password: 'P@$$W0RD',
+    roles: ['admin'],
   },
 };

@@ -26,5 +26,5 @@ export class RegisterNewUserDto {
   @Matches(/^.{6,}$/, { message: 'Password at least 6' })
   readonly confirmPassword: string;
 
-  readonly role = 'User';
+  readonly roles = ['user'];
 }
