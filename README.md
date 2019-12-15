@@ -17,7 +17,12 @@ $ npm start
 
 ## Description
 
-- Task for Index-Group Co.
+- This task for Index-Group Company
+
+<p align="center">
+ <img src="https://i.ibb.co/6Hxz1Dm/My-first-service.jpg" width="800" alt="Nest Logo" />
+</p>
+<!-- ![Service Overview](https://i.ibb.co/6Hxz1Dm/My-first-service.jpg) -->
 
 We need a simple api for restaurants with these requirements:-
 
