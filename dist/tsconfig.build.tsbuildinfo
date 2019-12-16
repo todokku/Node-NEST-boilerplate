@@ -1390,7 +1390,7 @@
         "signature": "1022bb9784c54b41f2e99b2b55895d4dd3c674ebeb4445ce8bd196f20eacfa4c"
       },
       "../src/shared/decorators/roles.decorator.ts": {
-        "version": "8c07daae55db0b73ef35d67d6d0c212897351d1c3126fd1214dc30689f9432ba",
+        "version": "f52598eedc8dd140e4d4c566a13c0ab24ae9a0a4f13f1a0ea553e839d538e9ce",
         "signature": "581f08bea9ab6cadc2d509467c080ce2e2ceee951bd1ae0ca45199fc5b31a7d8"
       },
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
@@ -1726,15 +1726,15 @@
         "signature": "dd6c59f8c97e8e0e528c683e672e42192e57c7cfb9e6243c3657914d0fce931a"
       },
       "../src/shared/pipes/object-to-mongo-point.pipe.ts": {
-        "version": "9f63c941970fc91a92026afacce332e83d2c24bf4bb3142026dc5bfa2c65fa36",
+        "version": "53e27bb2df606a64ca2005b3e5ac6c5d6a4e8ff368106680e9ceaed7f874c1e5",
         "signature": "c2f6df1a740e618bb71a9ece42230ea89c7785dbb235aed540e3217815d1a8e7"
       },
       "../src/shared/pipes/parse-to-object.pipe.ts": {
-        "version": "9bc1b1cfe77a75dbf70dbb807a8800ca51459f4e95d28a77b0ca9a5af9327e06",
+        "version": "c14fcfc2927a6cdede99bb4cf5d0966a319532a71ae16bc978d3ab275a73aa75",
         "signature": "bc79c513831cca6cc806430c37972ecf4f2b4b22696a1da8d03f773293ca652e"
       },
       "../src/shared/pipes/joi-validator.pipe.ts": {
-        "version": "a146303bd2f8b6699d2b5f1a7c7ac8ef783f9f14398e954dc395acd1168a6780",
+        "version": "dbd9b1a0723b7dda42757f4fe1375112382384fbb303a7f4b393123ab7683ff7",
         "signature": "0d4ee6dc358e9a74121d75df8504ff5a53568e05f9819309e88923efe8e9f7da"
       },
       "../src/restaurants/restaurants.controller.ts": {
@@ -1810,7 +1810,7 @@
         "signature": "bb0b28c8169ba41c0aa2a45339d9aa949c0a27aa17f67b4d7eba5a352a4b0576"
       },
       "../src/shared/decorators/user.decorator.ts": {
-        "version": "d7c3663c1bd49ddadca05fe67a47919d4936ee795d16e6bde99b490d13cbbfe2",
+        "version": "a5287797cfc9a4780cf12eafb84d9382d3db11e5337f7f915fd537e13a4760f7",
         "signature": "8a837a0309e722a8e7b50176f14b4967a8e37f0b8e397092a35744453cef09e0"
       },
       "../src/auth/auth.controller.ts": {
@@ -1918,7 +1918,7 @@
         "signature": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078"
       },
       "../src/app.module.ts": {
-        "version": "1ad413d1ba448085bd44e9a36b7626ced7a94436277901f8f7eacd4969ee3fd1",
+        "version": "a0f59e2c8903b31b9eff3e358a82dd2b86b4a290ddbddd1269c994450f9e2b9a",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88"
       },
       "../src/shared/options/rate-limit.options.ts": {
@@ -1942,19 +1942,19 @@
         "signature": "88e820b0c6ce306956b763fbcd6dcefee33e0ae8acf2bfc8854c57b417ed73db"
       },
       "../src/main.ts": {
-        "version": "46fe05cb8f31483a416c8cc01d43c446acccd1310a307fadcbece4764bdfd00c",
+        "version": "ce13ac2c51f49405f453ec0446fa0e8e858d23de4f213a2325d87d824ffec4ba",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "../src/shared/interceptors/hidden-password-field.interceptor.ts": {
-        "version": "f554299c0321375acc7e2e2286ff14a1bd0486b352da0be33e9e317fe015a7a3",
+        "version": "72b6353a191dfa88b09079e8f966b99ff19864e38764b31c8c80d35f7b3a2677",
         "signature": "028934b790c5acf0c204708a6fbbac95fc19209d603d7b9fc672e2278612fa90"
       },
       "../src/shared/interceptors/mongo-point-to-object.interceptor.ts": {
-        "version": "8caf571d088fb5af4609191175160a551188b85fb52b41d8a30ae6f63306edd7",
+        "version": "63a84988d0a6605aff8e7cd7ba433fbaa7dca99ff0320632f5632892a5599f08",
         "signature": "072c4b995e91302d647d689dbade4e84917a1cc3356c42dfcf3421d4e658a9f9"
       },
       "../src/shared/middlewares/csrf.middleware.ts": {
-        "version": "1b17a0c14c906cf988a1202d236b421be3468c475882436ad35a8be3f2f32d58",
+        "version": "c434df7b1f07441aa1bd1c4bf1f228b345822b559b6cce3add68c95eb4a0e8aa",
         "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
       "../node_modules/@types/anymatch/index.d.ts": {
@@ -10475,11 +10475,11 @@
       "../node_modules/@nestjs/serve-static/dist/serve-static.providers.d.ts",
       "../node_modules/@nestjs/serve-static/dist/index.d.ts",
       "../node_modules/@nestjs/serve-static/index.d.ts",
-      "../src/app.module.ts",
       "../src/shared/options/rate-limit.options.ts",
       "../node_modules/dotenv/types/index.d.ts",
       "../src/shared/options/swagger.options.ts",
       "../src/shared/options/class-validator.options.ts",
+      "../src/shared/filters/exceptions.filter.ts",
       "../src/main.ts",
       "../src/shared/interceptors/hidden-password-field.interceptor.ts",
       "../src/shared/interceptors/mongo-point-to-object.interceptor.ts",
@@ -10516,7 +10516,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/shared/filters/exceptions.filter.ts"
+      "../src/app.module.ts"
     ]
   },
   "version": "3.7.2"

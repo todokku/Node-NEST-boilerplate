@@ -48,7 +48,7 @@ async function bootstrap() {
     }
     await app.listen(Number(process.env.PORT));
     common_1.Logger.log(`Server start on http://localhost:${process.env.PORT}/api`, 'Custom-Log');
-    const isLocalDb = /\/?\/?(localhost|127.0.0.1):?/i.test(process.env.DB_URI);
+    const isLocalDb = /\/{2}?(localhost|127.0.0.1):?/i.test(process.env.DB_URI);
     common_1.Logger.log(`Connected to ${isLocalDb ? 'local' : 'online'} DB`, 'Custom-Log');
 }
 bootstrap();

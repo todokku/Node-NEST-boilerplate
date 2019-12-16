@@ -13,7 +13,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     /* Mongoose DB connection Init */
     MongooseModule.forRoot(process.env.DB_URI, mongooseOptions),
 
-    // Serve static files at Public [eg: index.html, uploads]
+    /* Serve static files at Public [eg: index.html, uploads] */
     ServeStaticModule.forRoot({
       rootPath: join('.', 'public'),
     }),
