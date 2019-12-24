@@ -1,3 +1,4 @@
+import { constants } from './shared/constants/constants';
 import { Module } from '@nestjs/common';
 import { CitiesModule } from './cities/cities.module';
 import { UsersModule } from './users/users.module';
@@ -11,7 +12,10 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
     /* Mongoose DB connection Init */
-    MongooseModule.forRoot(process.env.DB_URI, mongooseOptions),
+    MongooseModule.forRoot(
+      process.env.DB_URI.replace('{{databaseName}}', constants.databaseName),
+      mongooseOptions,
+    ),
 
     /* Serve static files at Public [eg: index.html, uploads] */
     ServeStaticModule.forRoot({

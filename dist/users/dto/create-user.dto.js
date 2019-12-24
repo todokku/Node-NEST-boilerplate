@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const roles_enums_1 = require("./../enum/roles.enums");
 const base_create_class_1 = require("../../shared/base/dto/base-create-class");
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
@@ -36,7 +35,14 @@ __decorate([
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "confirmPassword", void 0);
 __decorate([
-    swagger_1.ApiProperty({ enum: roles_enums_1.UserRoles }),
+    swagger_1.ApiProperty({
+        isArray: true,
+        type: [String],
+        example: ['user', 'admin'],
+    }),
+    class_validator_1.IsArray(),
+    class_validator_1.ArrayContains(['user', 'admin']),
+    class_validator_1.ArrayNotEmpty(),
     __metadata("design:type", Array)
 ], CreateUserDto.prototype, "roles", void 0);
 exports.CreateUserDto = CreateUserDto;

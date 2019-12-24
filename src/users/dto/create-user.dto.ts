@@ -1,8 +1,15 @@
 import { UserRoles } from './../enum/roles.enums';
 import { BaseCreateClass } from '../../shared/base/dto/base-create-class';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, Matches, IsEnum, IsString } from 'class-validator';
-import { isArray } from 'util';
+import {
+  IsEmail,
+  Matches,
+  IsString,
+  IsArray,
+  ArrayContains,
+  ArrayNotEmpty,
+} from 'class-validator';
+
 export class CreateUserDto extends BaseCreateClass {
   // Name
   @ApiProperty({ example: 'user name' })
@@ -25,8 +32,13 @@ export class CreateUserDto extends BaseCreateClass {
   confirmPassword: string;
 
   // Role
-  // @isArray()
-  // @IsEnum({ user: 'user', admin: 'admin' })
-  @ApiProperty({ enum: UserRoles })
-  roles: [UserRoles];
+  @ApiProperty({
+    isArray: true,
+    type: [String],
+    example: ['user', 'admin'],
+  })
+  @IsArray()
+  @ArrayContains(['user', 'admin'])
+  @ArrayNotEmpty()
+  roles: UserRoles[];
 }

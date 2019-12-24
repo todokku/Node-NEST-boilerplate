@@ -25,9 +25,14 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateUserDto.prototype, "email", void 0);
 __decorate([
-    swagger_1.ApiProperty({ enum: ['admin', 'user'] }),
-    class_validator_1.IsEnum({ user: 'user', admin: 'admin' }),
+    swagger_1.ApiProperty({
+        isArray: true,
+        type: [String],
+        example: ['user', 'admin'],
+    }),
     class_validator_1.IsArray(),
+    class_validator_1.ArrayContains(['user', 'admin']),
+    class_validator_1.ArrayNotEmpty(),
     __metadata("design:type", Array)
 ], UpdateUserDto.prototype, "roles", void 0);
 exports.UpdateUserDto = UpdateUserDto;

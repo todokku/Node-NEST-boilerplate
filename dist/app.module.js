@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const constants_1 = require("./shared/constants/constants");
 const common_1 = require("@nestjs/common");
 const cities_module_1 = require("./cities/cities.module");
 const users_module_1 = require("./users/users.module");
@@ -20,7 +21,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     common_1.Module({
         imports: [
-            mongoose_1.MongooseModule.forRoot(process.env.DB_URI, mongoose_options_1.mongooseOptions),
+            mongoose_1.MongooseModule.forRoot(process.env.DB_URI.replace('{{databaseName}}', constants_1.constants.databaseName), mongoose_options_1.mongooseOptions),
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: path_1.join('.', 'public'),
             }),

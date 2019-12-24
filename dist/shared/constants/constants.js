@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.constants = {
+    databaseName: 'nest-js-boilerplate',
     admin: {
         name: 'admin',
         email: 'admin@index-group.net',

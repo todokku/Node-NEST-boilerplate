@@ -5,5 +5,5 @@ export declare class CreateUserDto extends BaseCreateClass {
     email: string;
     password: string;
     confirmPassword: string;
-    roles: [UserRoles];
+    roles: UserRoles[];
 }
