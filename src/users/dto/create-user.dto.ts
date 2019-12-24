@@ -35,10 +35,10 @@ export class CreateUserDto extends BaseCreateClass {
   @ApiProperty({
     isArray: true,
     type: [String],
-    example: ['user', 'admin'],
+    example: ['user'],
   })
   @IsArray()
-  @ArrayContains(['user', 'admin'])
+  @ArrayContains(['user'])
   @ArrayNotEmpty()
   roles: UserRoles[];
 }

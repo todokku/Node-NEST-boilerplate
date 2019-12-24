@@ -1574,7 +1574,7 @@
         "signature": "159665ccf53daa8f8257148967c81dd476434b1f902039bc576e95544968b71d"
       },
       "../src/users/dto/create-user.dto.ts": {
-        "version": "94689141a273ee10db17df11785fac71240911849fd1f8bc43b7e826148e04ca",
+        "version": "b6fa8052799035bb1929bacac057baa3cdc79ae797dba83863d5d9b8d7f6f068",
         "signature": "01b9c1cce77a3259037f04e7f6e302bd4cbb90802435128deba47164c1f99a9c"
       },
       "../src/users/users.controller.ts": {
@@ -10388,8 +10388,8 @@
       "../src/shared/constants/errors.ts",
       "../src/users/interfaces/user.interface.ts",
       "../src/users/users.service.ts",
+      "../src/users/dto/update-user.dto.ts",
       "../src/shared/base/dto/base-create-class.ts",
-      "../src/users/dto/create-user.dto.ts",
       "../src/users/users.controller.ts",
       "../src/users/users.module.ts",
       "../src/restaurants/interfaces/location.interface.ts",
@@ -10517,7 +10517,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/users/dto/update-user.dto.ts"
+      "../src/users/dto/create-user.dto.ts"
     ]
   },
   "version": "3.7.2"
