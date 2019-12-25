@@ -1,3 +1,4 @@
+import { HiddenPasswordFieldInterceptor } from './../shared/interceptors/hidden-password-field.interceptor';
 import { IUserJWT } from './interfaces/jwt-user';
 import { ChangePasswordDto } from './dto/change-password-dto';
 import { bcryptOptions } from '../shared/options/bcrypt.options';
@@ -7,13 +8,20 @@ import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/user-login.dto';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { Controller, Post, Body, UseGuards, Req } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Req,
+  UseInterceptors,
+} from '@nestjs/common';
 import { hash } from 'bcryptjs';
 import { User } from '../shared/decorators/user.decorator';
-import { RolesGuard } from '../shared/guards/roles.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
+@UseInterceptors(HiddenPasswordFieldInterceptor)
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 

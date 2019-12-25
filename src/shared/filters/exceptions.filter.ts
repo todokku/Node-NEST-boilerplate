@@ -13,17 +13,17 @@ import { ValidationError } from 'class-validator';
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: any /* unknown */, host: ArgumentsHost) {
-    // console.log({
-    //   exceptionConstructorName: exception.constructor.name,
-    //   isHttpError: exception instanceof HttpException,
-    //   exception,
-    // });
+    console.log({
+      exceptionConstructorName: exception.constructor.name,
+      isHttpError: exception instanceof HttpException,
+      // exception,
+    });
 
     const ctx = host.switchToHttp();
     const req = ctx.getRequest();
     const res = ctx.getResponse();
 
-    let json = {
+    let jsonRes = {
       // timestamp: new Date().toISOString(),
       path: req.url,
       error: undefined,
@@ -33,8 +33,19 @@ export class AllExceptionsFilter implements ExceptionFilter {
       value: undefined,
     };
     if (exception instanceof HttpException) {
-      json.statusCode = exception.getStatus();
-      json = exception.message;
+      jsonRes.statusCode = exception.getStatus();
+
+      if (typeof exception.message === 'object') {
+        // Destruct object property of message is nested object
+        for (const property in exception.message) {
+          if (exception.message.hasOwnProperty(property)) {
+            jsonRes[property] = exception.message[property];
+          }
+        }
+      } else {
+        // Or just pass the message if it's a string
+        jsonRes.message = exception.message;
+      }
 
       // Class validator handler
       if (exception instanceof BadRequestException) {
@@ -43,30 +54,35 @@ export class AllExceptionsFilter implements ExceptionFilter {
           Array.isArray(exception.message.message) &&
           exception.message.message[0] instanceof ValidationError
         ) {
-          json.key = exception.message.message[0].property;
-          json.value = exception.message.message[0].value;
-          json.message = Object.values(
+          jsonRes.key = exception.message.message[0].property;
+          jsonRes.value = exception.message.message[0].value;
+          jsonRes.message = Object.values(
             exception.message.message[0].constraints,
           )[0];
         }
       }
     } else if (exception instanceof TypeError) {
-      json.error = 'Not Found';
-      json.statusCode = 404;
-      // json.message= exception.message;
+      jsonRes.error = 'Not Found';
+      jsonRes.statusCode = 404;
+      // jsonRes.message= exception.message;
     } else if (exception.constructor.name === 'MongoError') {
       if ([11000, 11001].indexOf(exception.code) >= 0) {
-        json.statusCode = HttpStatus.CONFLICT;
+        jsonRes.statusCode = HttpStatus.CONFLICT;
 
         const keyBasic = /(!?index: )([\w."]+)/.exec(exception.message);
         const valueBasic = /({ : )([('")\w@.]+)/.exec(exception.message);
-        json.key = keyBasic && keyBasic[2];
-        json.value = valueBasic && valueBasic[2];
-        json.message = 'Duplication Error';
+        jsonRes.key = keyBasic && keyBasic[2];
+        jsonRes.value = valueBasic && valueBasic[2];
+        jsonRes.message = 'Duplication Error';
       }
     } else {
-      json.message = exception.message;
+      jsonRes.message = exception.message;
     }
-    res.status(json.statusCode).json(json);
+
+    if (!jsonRes.statusCode && !exception.status) {
+      Logger.log('Unhandled type of errors');
+    }
+
+    res.status(jsonRes.statusCode || exception.status || 500).json(jsonRes);
   }
 }

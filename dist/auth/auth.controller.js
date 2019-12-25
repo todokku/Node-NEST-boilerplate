@@ -12,6 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const hidden_password_field_interceptor_1 = require("./../shared/interceptors/hidden-password-field.interceptor");
 const change_password_dto_1 = require("./dto/change-password-dto");
 const bcrypt_options_1 = require("../shared/options/bcrypt.options");
 const errors_1 = require("../shared/constants/errors");
@@ -115,6 +116,7 @@ __decorate([
 AuthController = __decorate([
     swagger_1.ApiTags('Auth'),
     common_1.Controller('auth'),
+    common_1.UseInterceptors(hidden_password_field_interceptor_1.HiddenPasswordFieldInterceptor),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AuthController);
 exports.AuthController = AuthController;

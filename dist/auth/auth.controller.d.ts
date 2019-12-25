@@ -7,10 +7,15 @@ export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
     login(userLogin: UserLoginDto): Promise<{
-        bearer_token: string;
+        jwt_bearer_token: string;
     }>;
     logout(req: any): {};
-    register(registerNewUserDto: RegisterNewUserDto): Promise<any>;
-    profile(user: IUserJWT): Promise<any>;
-    changePassword(user: IUserJWT, changePasswordDto: ChangePasswordDto): Promise<any>;
+    register(registerNewUserDto: RegisterNewUserDto): Promise<{
+        _id?: string;
+        name: string;
+        email: string;
+        roles: string[];
+    }>;
+    profile(user: IUserJWT): Promise<import("../users/classes/user").User>;
+    changePassword(user: IUserJWT, changePasswordDto: ChangePasswordDto): Promise<import("../users/classes/user").User>;
 }

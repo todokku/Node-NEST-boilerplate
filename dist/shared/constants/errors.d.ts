@@ -1,6 +1,7 @@
-import { HttpException, UnauthorizedException, ForbiddenException, GoneException } from '@nestjs/common';
+import { AcceptedException } from './../exceptions/accept.exception';
+import { UnauthorizedException, ForbiddenException, GoneException } from '@nestjs/common';
 export declare const errors: {
-    deletedSuccessfully: HttpException;
+    deletedSuccessfully: AcceptedException;
     documentNotFound: GoneException;
     invalidEmailOrPassword: UnauthorizedException;
     invalidPassword: UnauthorizedException;

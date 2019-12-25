@@ -1,3 +1,4 @@
+import { AcceptedException } from './../exceptions/accept.exception';
 import {
   HttpException,
   HttpStatus,
@@ -7,10 +8,9 @@ import {
 } from '@nestjs/common';
 
 export const errors = {
-  deletedSuccessfully: new HttpException(
-    { message: 'Deleted successfully' },
-    HttpStatus.ACCEPTED,
-  ),
+  deletedSuccessfully: new AcceptedException({
+    message: 'Document deleted successfully',
+  }),
 
   documentNotFound: new GoneException('Cannot found document with this ID'),
   invalidEmailOrPassword: new UnauthorizedException(

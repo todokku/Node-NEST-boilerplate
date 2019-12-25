@@ -11,17 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_options_1 = require("../shared/options/bcrypt.options");
@@ -37,8 +26,7 @@ let UsersService = class UsersService {
         this.createAdminIfNotExists();
     }
     async create(user) {
-        const _a = (await this.userModel.create(user))._doc, { password, roles } = _a, newUser = __rest(_a, ["password", "roles"]);
-        return newUser;
+        return (await this.userModel.create(user))._doc;
     }
     async update(id, user) {
         if (user.password) {
@@ -48,8 +36,7 @@ let UsersService = class UsersService {
             .findOneAndUpdate({ _id: id }, { $set: user }, { new: true })
             .lean();
         if (updatedUser) {
-            const { password } = updatedUser, finalUserObj = __rest(updatedUser, ["password"]);
-            return finalUserObj;
+            return updatedUser;
         }
         else {
             throw errors_1.errors.documentNotFound;
@@ -60,8 +47,7 @@ let UsersService = class UsersService {
             .findOneAndUpdate({ _id: id }, { $set: newPassword }, { new: true })
             .lean();
         if (changedPasswordUser) {
-            const { password } = changedPasswordUser, finalUserObj = __rest(changedPasswordUser, ["password"]);
-            return finalUserObj;
+            return changedPasswordUser;
         }
         else {
             throw errors_1.errors.documentNotFound;
@@ -74,8 +60,7 @@ let UsersService = class UsersService {
         })
             .lean();
         if (userExisted) {
-            const { password } = userExisted, user = __rest(userExisted, ["password"]);
-            return user;
+            return userExisted;
         }
         else {
             throw errors_1.errors.documentNotFound;
@@ -96,7 +81,7 @@ let UsersService = class UsersService {
         return await this.userModel.findOne({ email }).lean();
     }
     getAll() {
-        return this.userModel.find({}, { password: 0 }).lean();
+        return this.userModel.find({}).lean();
     }
     async createAdminIfNotExists() {
         const adminExists = await this.userModel

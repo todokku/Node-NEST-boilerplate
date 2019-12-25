@@ -1,3 +1,4 @@
+import { User } from './classes/user';
 import { IChangePassword } from './../auth/interfaces/change-password';
 import { bcryptOptions } from '../shared/options/bcrypt.options';
 import { errors } from '../shared/constants/errors';
@@ -17,14 +18,15 @@ export class UsersService {
     this.createAdminIfNotExists();
   }
 
-  async create(user: IUser) {
-    const { password, roles, ...newUser } = (
-      await this.userModel.create(user)
-    )._doc;
-    return newUser;
+  async create(user: IUser): Promise<User> {
+    return (await this.userModel.create(user))._doc;
+    // const { password, roles, ...newUser } = (
+    //   await this.userModel.create(user)
+    // )._doc;
+    // return newUser;
   }
 
-  async update(id: ObjectId, user: IUser) {
+  async update(id: ObjectId, user: IUser): Promise<User> {
     if (user.password) {
       delete user.password;
     }
@@ -32,26 +34,31 @@ export class UsersService {
       .findOneAndUpdate({ _id: id }, { $set: user }, { new: true })
       .lean();
     if (updatedUser) {
-      const { password, ...finalUserObj } = updatedUser;
-      return finalUserObj;
+      return updatedUser;
+      // const { password, ...finalUserObj } = updatedUser;
+      // return finalUserObj;
     } else {
       throw errors.documentNotFound;
     }
   }
 
-  async changePassword(id: ObjectId, newPassword: IChangePassword) {
+  async changePassword(
+    id: ObjectId,
+    newPassword: IChangePassword,
+  ): Promise<User> {
     const changedPasswordUser = await this.userModel
       .findOneAndUpdate({ _id: id }, { $set: newPassword }, { new: true })
       .lean();
     if (changedPasswordUser) {
-      const { password, ...finalUserObj } = changedPasswordUser;
-      return finalUserObj;
+      return changedPasswordUser;
+      // const { password, ...finalUserObj } = changedPasswordUser;
+      // return finalUserObj;
     } else {
       throw errors.documentNotFound;
     }
   }
 
-  async getById(id: ObjectId) {
+  async getById(id: ObjectId): Promise<User> {
     const userExisted = await this.userModel
       .findOne({
         _id: id,
@@ -59,14 +66,15 @@ export class UsersService {
       .lean();
 
     if (userExisted) {
-      const { password, ...user } = userExisted;
-      return user;
+      return userExisted;
+      // const { password, ...user } = userExisted;
+      // return user;
     } else {
       throw errors.documentNotFound;
     }
   }
 
-  async delete(id: ObjectId) {
+  async delete(id: ObjectId): Promise<User> {
     const userDeleted = await this.userModel
       .findOneAndDelete({ _id: id })
       .lean();
@@ -77,12 +85,12 @@ export class UsersService {
     }
   }
 
-  async getByEmail(email) {
+  async getByEmail(email): Promise<User> {
     return await this.userModel.findOne({ email }).lean();
   }
 
-  getAll() {
-    return this.userModel.find({}, { password: 0 }).lean();
+  getAll(): Promise<User[]> {
+    return this.userModel.find({}).lean();
   }
 
   async createAdminIfNotExists() {

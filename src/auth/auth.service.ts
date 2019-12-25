@@ -31,7 +31,7 @@ export class AuthService {
       const isPassCorrect = await compare(userLogin.password, user.password);
       if (isPassCorrect) {
         return {
-          bearer_token:
+          jwt_bearer_token:
             /*  'Bearer ' + */
             this.jwtService.sign({
               _id: user._id,

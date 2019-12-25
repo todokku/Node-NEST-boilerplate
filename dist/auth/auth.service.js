@@ -45,7 +45,7 @@ let AuthService = class AuthService {
             const isPassCorrect = await bcryptjs_1.compare(userLogin.password, user.password);
             if (isPassCorrect) {
                 return {
-                    bearer_token: this.jwtService.sign({
+                    jwt_bearer_token: this.jwtService.sign({
                         _id: user._id,
                         email: user.email,
                         roles: user.roles,

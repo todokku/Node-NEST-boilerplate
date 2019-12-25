@@ -8,11 +8,21 @@ export declare class AuthService {
     private readonly jwtService;
     private readonly usersService;
     constructor(jwtService: JwtService, usersService: UsersService);
-    validateUser(username: string, pass: string): Promise<any>;
-    login(userLogin: any): Promise<{
-        bearer_token: string;
+    validateUser(username: string, pass: string): Promise<{
+        _id?: string;
+        name: string;
+        email: string;
+        roles: string[];
     }>;
-    register(user: IUser): Promise<any>;
-    profile(id: ObjectId): Promise<any>;
-    changePassword(authUser: IUserJWT, incomePasswords: ChangePasswordDto): Promise<any>;
+    login(userLogin: any): Promise<{
+        jwt_bearer_token: string;
+    }>;
+    register(user: IUser): Promise<{
+        _id?: string;
+        name: string;
+        email: string;
+        roles: string[];
+    }>;
+    profile(id: ObjectId): Promise<import("../users/classes/user").User>;
+    changePassword(authUser: IUserJWT, incomePasswords: ChangePasswordDto): Promise<import("../users/classes/user").User>;
 }

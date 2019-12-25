@@ -1,3 +1,4 @@
+import { HiddenPasswordFieldInterceptor } from './../shared/interceptors/hidden-password-field.interceptor';
 import { RolesGuard } from './../shared/guards/roles.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -11,6 +12,7 @@ import {
   Param,
   Body,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -20,6 +22,7 @@ import { Roles } from 'src/shared/decorators/roles.decorator';
 @Controller('users')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @ApiBearerAuth()
+@UseInterceptors(HiddenPasswordFieldInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

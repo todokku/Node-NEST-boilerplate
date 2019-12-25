@@ -1,8 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const accept_exception_1 = require("./../exceptions/accept.exception");
 const common_1 = require("@nestjs/common");
 exports.errors = {
-    deletedSuccessfully: new common_1.HttpException({ message: 'Deleted successfully' }, common_1.HttpStatus.ACCEPTED),
+    deletedSuccessfully: new accept_exception_1.AcceptedException({
+        message: 'Document deleted successfully',
+    }),
     documentNotFound: new common_1.GoneException('Cannot found document with this ID'),
     invalidEmailOrPassword: new common_1.UnauthorizedException('Invalid "Email" or "Password"'),
     invalidPassword: new common_1.UnauthorizedException('Invalid old password'),
