@@ -68,3 +68,13 @@ Notes:
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+# TODO:
+## Build
+- Numbering system
+- Generic service
+- Pagination
+## Config
+- Elasticsearch
+- 
