@@ -66,15 +66,15 @@ export class AllExceptionsFilter implements ExceptionFilter {
       jsonRes.statusCode = 404;
       // jsonRes.message= exception.message;
     } else if (exception.constructor.name === 'MongoError') {
-      if ([11000, 11001].indexOf(exception.code) >= 0) {
-        jsonRes.statusCode = HttpStatus.CONFLICT;
+      // if ([11000, 11001].indexOf(exception.code) >= 0) { // Duplication error
+      jsonRes.statusCode = HttpStatus.CONFLICT;
 
-        const keyBasic = /(!?index: )([\w."]+)/.exec(exception.message);
-        const valueBasic = /({ : )([('")\w@.]+)/.exec(exception.message);
-        jsonRes.key = keyBasic && keyBasic[2];
-        jsonRes.value = valueBasic && valueBasic[2];
-        jsonRes.message = 'Duplication Error';
-      }
+      const keyBasic = /(!?index: )([\w."]+)/.exec(exception.message);
+      const valueBasic = /({ : )([('")\w@.]+)/.exec(exception.message);
+      jsonRes.key = keyBasic && keyBasic[2];
+      jsonRes.value = valueBasic && valueBasic[2];
+      jsonRes.message = 'Duplication Error';
+      // }
     } else {
       jsonRes.message = exception.message;
     }

@@ -1381,17 +1381,25 @@
         "version": "70aecfd981af29d74ba7ab6667b9cc2a53459d8eb099c139fd2aa54c3059c71d",
         "signature": "70aecfd981af29d74ba7ab6667b9cc2a53459d8eb099c139fd2aa54c3059c71d"
       },
+      "../src/shared/base/dto/base-dto.class.ts": {
+        "version": "b294e8d3b3e498371e6f79bb9fd1ed7aef234be1f13767a0ed9d725398a911c5",
+        "signature": "d4f24908900178f68091a95a7664b645cd30581b95bde3dd8fff73d0d6af4168"
+      },
       "../src/shared/base/dto/base-update-class.ts": {
-        "version": "4d38f6250fc0a055844d8090e1b9e0062cea89c53f60b7b7ca12c3c0ce2c8070",
+        "version": "ddfdbbfcb6d1e9e9877061320664eddb55997c3dec64812e946e26aea5038d63",
         "signature": "6524749be2927f59bbdb9fb2f6c9835e283941df9fd61e1575d3a36f251f0315"
       },
       "../src/cities/dto/update-city.dto.ts": {
-        "version": "3380c1b0d4b1a8df4996edb7edc3b3e3eb9226af867270d2332adc4b0c2cd7b6",
-        "signature": "9c30f6d5fdb9f4b60bc40da99441cf0fc641cf3503fd37af633954e58db6aa8c"
+        "version": "be3aa67bdc46043a1ccba2e1f9660189b7fe32c904b3096dbb064604429acaf6",
+        "signature": "bfcee0eb9f10676a14b76ce2d297a019eecdcae28e420a2ac7a51e35faffee0e"
+      },
+      "../src/shared/base/dto/base-create-class.ts": {
+        "version": "1e4dafb2c1c0e9a678656645ce548b2a20ee266e0313f07005fc64e49160a27f",
+        "signature": "159665ccf53daa8f8257148967c81dd476434b1f902039bc576e95544968b71d"
       },
       "../src/cities/dto/create-city.dto.ts": {
-        "version": "023ab1bf8979bce922ef9b0ae3dad59dced6654ed9b8ac3b8738330e4153ed79",
-        "signature": "1022bb9784c54b41f2e99b2b55895d4dd3c674ebeb4445ce8bd196f20eacfa4c"
+        "version": "88fad0e087b1768565246ee765e7c5b4a05df986a7c9e896d5103da16e5b503c",
+        "signature": "01a8fe05d8fa1e882495d0aa0f275a684598d453237859c5ef4676cfd015ebe0"
       },
       "../src/shared/decorators/roles.decorator.ts": {
         "version": "f52598eedc8dd140e4d4c566a13c0ab24ae9a0a4f13f1a0ea553e839d538e9ce",
@@ -1537,12 +1545,16 @@
         "version": "f77d96d4644c842eabf0d68c0cb29b808540989d89bbf3d8ac06249d0c8815eb",
         "signature": "b6ff1da5d42982d75889c9df41a3efed193dcaf03b4302c7a688b6dfa29e9c27"
       },
+      "../src/shared/options/elastic-search.options.ts": {
+        "version": "ad7c495576f1879dd91d9b5cc01cd9e49dd5de498edd174348069cd37c239c57",
+        "signature": "e9adf4471431b334c854c201e85f8d180c6361e6bbb1300c8703068cd9e1d29c"
+      },
       "../src/users/enum/roles.enums.ts": {
         "version": "f4f9abd903ab153635e42ded6ed0cf5fe0a926fe9c8c8bcde4adc34a7a10d162",
         "signature": "d051bd37e380590872501e66c3cee45311dd3b93fe0fdc0b819117e5b69c9c13"
       },
       "../src/users/schemas/user.schema.ts": {
-        "version": "1ad84c70c2567129d8df074fe7b6ddefc22c929c790064d3f4a8d06149e0f1d9",
+        "version": "75a9f6374fe88d3313d29722444caef85f8ff99cd476a863a36fb79316e4d38a",
         "signature": "9368bf8d6c6ae153c57a9244bb5531f30a99c7961d2e19cbf1522795a0118c97"
       },
       "../node_modules/class-transformer/classtransformoptions.d.ts": {
@@ -1598,7 +1610,7 @@
         "signature": "4a0dcd837c9108ad9454c3cad0c3f0b844e411ceee9028c69beecd4837b353fe"
       },
       "../src/users/users.service.ts": {
-        "version": "37e2213be6087af3623b747aa8fa6ed83d9a2295bf390227e4c9852be3869a8c",
+        "version": "9bd31360d67f5c342a56f158caa29ecca24143c63a05744c6f6a28f981ffbacf",
         "signature": "b3aa6d7c7c064e966178c2d48f8f57d36728bc3f1dadca3269789449407d26e0"
       },
       "../node_modules/rxjs/internal/operators/audit.d.ts": {
@@ -2025,10 +2037,6 @@
         "version": "31141ea4f663bd51093346da1f673a5ecf864ac90ebbadbc2312d0fb13843aaf",
         "signature": "ba40ec3160327bb3d70e2361cd2ffbfbd26984590c01a421c24200c580b4c68a"
       },
-      "../src/shared/base/dto/base-create-class.ts": {
-        "version": "1e4dafb2c1c0e9a678656645ce548b2a20ee266e0313f07005fc64e49160a27f",
-        "signature": "159665ccf53daa8f8257148967c81dd476434b1f902039bc576e95544968b71d"
-      },
       "../src/users/dto/create-user.dto.ts": {
         "version": "60b5c86e7dc97c8609231274efcc2fcb13ed498c9e08fcd059a9a5df3693f0aa",
         "signature": "01b9c1cce77a3259037f04e7f6e302bd4cbb90802435128deba47164c1f99a9c"
@@ -2366,7 +2374,7 @@
         "signature": "c21f258d0da4bb5e1b752771bd0e0a5f613e83eb554daacb6d842a486a1fd473"
       },
       "../src/shared/filters/exceptions.filter.ts": {
-        "version": "04cef783ef68e018b5aa8f9a4d02c15afb9f8b1e92d60dd26cb205d367221965",
+        "version": "53cf637cddaed3107e7f7fd0f12cc854357a6a8f767d95118551464a09a1c618",
         "signature": "88e820b0c6ce306956b763fbcd6dcefee33e0ae8acf2bfc8854c57b417ed73db"
       },
       "../src/main.ts": {
@@ -2416,6 +2424,14 @@
       "../node_modules/@types/cookiejar/index.d.ts": {
         "version": "16b7fb094ffaa5d270f934e7406e8baee2f8245cfabf6dcc20f693389f005f56",
         "signature": "16b7fb094ffaa5d270f934e7406e8baee2f8245cfabf6dcc20f693389f005f56"
+      },
+      "../node_modules/@types/elasticsearch/src/lib/connectors/http.d.ts": {
+        "version": "e37ee3ddf6cd3a7f130317c2200a37a8f1c14bd293966fd581ed9c345c311faf",
+        "signature": "e37ee3ddf6cd3a7f130317c2200a37a8f1c14bd293966fd581ed9c345c311faf"
+      },
+      "../node_modules/@types/elasticsearch/index.d.ts": {
+        "version": "dc2ec68dcbe5ecc12e4a43b16fe47d6b546eb7e761d95dc137467ecfdce195a7",
+        "signature": "dc2ec68dcbe5ecc12e4a43b16fe47d6b546eb7e761d95dc137467ecfdce195a7"
       },
       "../node_modules/@types/minimatch/index.d.ts": {
         "version": "1d1e6bd176eee5970968423d7e215bfd66828b6db8d54d17afec05a831322633",
@@ -5227,6 +5243,14 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/shared/base/dto/base-dto.class.ts": [
+        "../node_modules/@nestjs/swagger/index.d.ts",
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/shared/base/dto/base-update-class.ts": [
         "../node_modules/@nestjs/swagger/index.d.ts",
         "../node_modules/class-validator/index.d.ts",
@@ -5236,6 +5260,7 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../src/cities/dto/update-city.dto.ts": [
+        "../src/shared/base/dto/base-dto.class.ts",
         "../src/shared/base/dto/base-update-class.ts",
         "../node_modules/class-validator/index.d.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
@@ -5244,7 +5269,17 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/shared/base/dto/base-create-class.ts": [
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@nestjs/swagger/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/cities/dto/create-city.dto.ts": [
+        "../src/shared/base/dto/base-dto.class.ts",
+        "../src/shared/base/dto/base-create-class.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
         "../node_modules/class-validator/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
@@ -5575,6 +5610,12 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/shared/options/elastic-search.options.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/users/enum/roles.enums.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -5582,6 +5623,7 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../src/users/schemas/user.schema.ts": [
+        "../src/shared/options/elastic-search.options.ts",
         "../src/users/enum/roles.enums.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -6614,14 +6656,6 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../src/shared/base/dto/base-create-class.ts": [
-        "../node_modules/class-validator/index.d.ts",
-        "../node_modules/@nestjs/swagger/index.d.ts",
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
       "../src/users/dto/create-user.dto.ts": [
         "../src/users/enum/roles.enums.ts",
         "../src/shared/base/dto/base-create-class.ts",
@@ -7450,6 +7484,19 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../node_modules/@types/cookiejar/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/elasticsearch/src/lib/connectors/http.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/elasticsearch/index.d.ts": [
+        "../node_modules/@types/elasticsearch/src/lib/connectors/http.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -10306,7 +10353,10 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../src/cities/dto/update-city.dto.ts": [
-        "../src/shared/base/dto/base-update-class.ts"
+        "../src/shared/base/dto/base-dto.class.ts"
+      ],
+      "../src/cities/dto/create-city.dto.ts": [
+        "../src/shared/base/dto/base-dto.class.ts"
       ],
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
@@ -12076,6 +12126,19 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../node_modules/@types/elasticsearch/src/lib/connectors/http.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/elasticsearch/index.d.ts": [
+        "../node_modules/@types/elasticsearch/src/lib/connectors/http.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../node_modules/@types/minimatch/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -12586,8 +12649,10 @@
       "../node_modules/class-validator/metadata/constraintmetadata.d.ts",
       "../node_modules/class-validator/metadata/metadatastorage.d.ts",
       "../node_modules/class-validator/index.d.ts",
+      "../src/shared/base/dto/base-dto.class.ts",
       "../src/shared/base/dto/base-update-class.ts",
       "../src/cities/dto/update-city.dto.ts",
+      "../src/shared/base/dto/base-create-class.ts",
       "../src/cities/dto/create-city.dto.ts",
       "../src/shared/decorators/roles.decorator.ts",
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts",
@@ -12625,6 +12690,7 @@
       "../src/cities/cities.controller.ts",
       "../src/cities/schemas/city.schema.ts",
       "../src/cities/cities.module.ts",
+      "../src/shared/options/elastic-search.options.ts",
       "../src/users/enum/roles.enums.ts",
       "../src/users/schemas/user.schema.ts",
       "../node_modules/class-transformer/classtransformoptions.d.ts",
@@ -12746,7 +12812,7 @@
       "../node_modules/rxjs/operators/index.d.ts",
       "../src/shared/interceptors/hidden-password-field.interceptor.ts",
       "../src/shared/validators/extend-class-validator.ts",
-      "../src/shared/base/dto/base-create-class.ts",
+      "../src/users/dto/update-user.dto.ts",
       "../src/users/dto/create-user.dto.ts",
       "../src/users/users.controller.ts",
       "../src/users/users.module.ts",
@@ -12831,7 +12897,6 @@
       "../node_modules/dotenv/types/index.d.ts",
       "../src/shared/options/swagger.options.ts",
       "../src/shared/options/class-validator.options.ts",
-      "../src/shared/filters/exceptions.filter.ts",
       "../src/main.ts",
       "../src/shared/interceptors/mongo-point-to-object.interceptor.ts",
       "../src/shared/middlewares/csrf.middleware.ts",
@@ -12844,6 +12909,8 @@
       "../node_modules/@types/babel__core/index.d.ts",
       "../node_modules/@types/color-name/index.d.ts",
       "../node_modules/@types/cookiejar/index.d.ts",
+      "../node_modules/@types/elasticsearch/src/lib/connectors/http.d.ts",
+      "../node_modules/@types/elasticsearch/index.d.ts",
       "../node_modules/@types/minimatch/index.d.ts",
       "../node_modules/@types/glob/index.d.ts",
       "../node_modules/@types/istanbul-lib-coverage/index.d.ts",
@@ -12867,7 +12934,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/users/dto/update-user.dto.ts"
+      "../src/shared/filters/exceptions.filter.ts"
     ]
   },
   "version": "3.7.2"

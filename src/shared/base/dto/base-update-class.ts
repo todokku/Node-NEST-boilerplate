@@ -2,11 +2,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsMongoId, IsNumber, IsNotEmpty } from 'class-validator';
 
 export class BaseUpdateClass {
-  // Id
+  // _id : document object id
   @ApiProperty({
     example: '000000000000000000000000',
     description:
-      'Mongo id of the document, Hex [0-9a-f], 24 letter alphanumeric',
+      'Mongo id of the document, Hex [0-9,a-f], 24 letter alphanumeric',
   })
   @IsMongoId()
   readonly _id?: string;

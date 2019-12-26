@@ -24,6 +24,9 @@ let UsersService = class UsersService {
     constructor(userModel) {
         this.userModel = userModel;
         this.createAdminIfNotExists();
+        userModel.createMapping((err, mapping) => {
+            console.log({ err, mapping });
+        });
     }
     async create(user) {
         return (await this.userModel.create(user))._doc;

@@ -16,6 +16,10 @@ export class UsersService {
     private readonly userModel: Model<IUser>,
   ) {
     this.createAdminIfNotExists();
+
+    userModel.createMapping((err, mapping) => {
+      console.log({ err, mapping });
+    });
   }
 
   async create(user: IUser): Promise<User> {

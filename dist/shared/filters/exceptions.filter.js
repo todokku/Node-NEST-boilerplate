@@ -52,14 +52,12 @@ let AllExceptionsFilter = class AllExceptionsFilter {
             jsonRes.statusCode = 404;
         }
         else if (exception.constructor.name === 'MongoError') {
-            if ([11000, 11001].indexOf(exception.code) >= 0) {
-                jsonRes.statusCode = common_1.HttpStatus.CONFLICT;
-                const keyBasic = /(!?index: )([\w."]+)/.exec(exception.message);
-                const valueBasic = /({ : )([('")\w@.]+)/.exec(exception.message);
-                jsonRes.key = keyBasic && keyBasic[2];
-                jsonRes.value = valueBasic && valueBasic[2];
-                jsonRes.message = 'Duplication Error';
-            }
+            jsonRes.statusCode = common_1.HttpStatus.CONFLICT;
+            const keyBasic = /(!?index: )([\w."]+)/.exec(exception.message);
+            const valueBasic = /({ : )([('")\w@.]+)/.exec(exception.message);
+            jsonRes.key = keyBasic && keyBasic[2];
+            jsonRes.value = valueBasic && valueBasic[2];
+            jsonRes.message = 'Duplication Error';
         }
         else {
             jsonRes.message = exception.message;

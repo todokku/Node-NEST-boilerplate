@@ -11,24 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-class BaseUpdateClass {
+class BaseDtoClass {
 }
-__decorate([
-    swagger_1.ApiProperty({
-        example: '000000000000000000000000',
-        description: 'Mongo id of the document, Hex [0-9,a-f], 24 letter alphanumeric',
-    }),
-    class_validator_1.IsMongoId(),
-    __metadata("design:type", String)
-], BaseUpdateClass.prototype, "_id", void 0);
-__decorate([
-    swagger_1.ApiProperty({
-        example: 0,
-        description: 'Version of the document',
-    }),
-    class_validator_1.IsNumber(),
-    __metadata("design:type", Number)
-], BaseUpdateClass.prototype, "__v", void 0);
 __decorate([
     swagger_1.ApiProperty({
         example: 'document name',
@@ -36,6 +20,6 @@ __decorate([
     }),
     class_validator_1.IsNotEmpty(),
     __metadata("design:type", String)
-], BaseUpdateClass.prototype, "name", void 0);
-exports.BaseUpdateClass = BaseUpdateClass;
-//# sourceMappingURL=base-update-class.js.map
+], BaseDtoClass.prototype, "name", void 0);
+exports.BaseDtoClass = BaseDtoClass;
+//# sourceMappingURL=base-dto.class.js.map
