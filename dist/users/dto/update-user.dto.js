@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const base_update_class_1 = require("../../shared/base/dto/base-update-class");
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
+const extend_class_validator_1 = require("..\\..\\shared\\validators\\extend-class-validator");
 class UpdateUserDto extends base_update_class_1.BaseUpdateClass {
 }
 __decorate([
@@ -27,12 +28,11 @@ __decorate([
 __decorate([
     swagger_1.ApiProperty({
         isArray: true,
-        type: [String],
         example: ['user', 'admin'],
     }),
     class_validator_1.IsArray(),
-    class_validator_1.ArrayContains(['user', 'admin']),
-    class_validator_1.ArrayNotEmpty(),
+    class_validator_1.ArrayUnique(),
+    extend_class_validator_1.ValidArrayValues(['admin', 'user']),
     __metadata("design:type", Array)
 ], UpdateUserDto.prototype, "roles", void 0);
 exports.UpdateUserDto = UpdateUserDto;

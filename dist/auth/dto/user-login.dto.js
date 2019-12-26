@@ -14,7 +14,7 @@ const swagger_1 = require("@nestjs/swagger");
 class UserLoginDto {
 }
 __decorate([
-    swagger_1.ApiProperty({ example: 'admin@index-group.net' }),
+    swagger_1.ApiProperty({ example: 'super@man.net' }),
     class_validator_1.IsEmail(),
     __metadata("design:type", String)
 ], UserLoginDto.prototype, "email", void 0);

@@ -37,11 +37,10 @@ __decorate([
 __decorate([
     swagger_1.ApiProperty({
         isArray: true,
-        type: [String],
-        example: ['user'],
+        example: ['user', 'admin'],
     }),
     class_validator_1.IsArray(),
-    class_validator_1.ArrayContains(['user']),
+    class_validator_1.ArrayContains(['user', 'admin']),
     class_validator_1.ArrayNotEmpty(),
     __metadata("design:type", Array)
 ], CreateUserDto.prototype, "roles", void 0);

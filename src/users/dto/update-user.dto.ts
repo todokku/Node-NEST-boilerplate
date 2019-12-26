@@ -7,7 +7,12 @@ import {
   IsArray,
   ArrayContains,
   ArrayNotEmpty,
+  IsIn,
+  ArrayUnique,
+  Allow,
+  Matches,
 } from 'class-validator';
+import { ValidArrayValues } from 'src/shared/validators/extend-class-validator';
 
 export class UpdateUserDto extends BaseUpdateClass {
   // Name
@@ -23,11 +28,10 @@ export class UpdateUserDto extends BaseUpdateClass {
   // Role
   @ApiProperty({
     isArray: true,
-    type: [String],
     example: ['user', 'admin'],
   })
   @IsArray()
-  @ArrayContains(['user', 'admin'])
-  @ArrayNotEmpty()
+  @ArrayUnique()
+  @ValidArrayValues(['admin', 'user'])
   roles: UserRoles[];
 }

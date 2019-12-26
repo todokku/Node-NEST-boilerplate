@@ -130,7 +130,7 @@
         "signature": "873c09f1c309389742d98b7b67419a8e0a5fa6f10ce59fd5149ecd31a2818594"
       },
       "../src/shared/constants/constants.ts": {
-        "version": "84cc090cdeef21715f5ca64b28c9b17bc7015e7b1ed0942d180cd0ace2ef172a",
+        "version": "122bcd349e789719463afaa66af553b2ccfab4ca1b5036189998aa6d6186ab11",
         "signature": "d73d9f831cbbdcc64dc674cb9b4459929f096c80f1d01a6cd2f727170685ba7e"
       },
       "../node_modules/reflect-metadata/index.d.ts": {
@@ -2017,8 +2017,12 @@
         "version": "f94f300b38dc6b5719301a7aa2705a78cf338c94b2d6de88232b8b3f893f4be5",
         "signature": "028934b790c5acf0c204708a6fbbac95fc19209d603d7b9fc672e2278612fa90"
       },
+      "../src/shared/validators/extend-class-validator.ts": {
+        "version": "00b8ae767a6774f4d506cc7deeecfa6fa64644f9b7e892de20945a1868818056",
+        "signature": "b7ea1dbaafb94d447c105ccaf4318f45406a9c8f2cb20ea20c70cf8509ec582e"
+      },
       "../src/users/dto/update-user.dto.ts": {
-        "version": "b2c040d93a9ee8e9c7c0f2029c73a7da8d83e98715f661fc46de7b3b8ac72663",
+        "version": "31141ea4f663bd51093346da1f673a5ecf864ac90ebbadbc2312d0fb13843aaf",
         "signature": "ba40ec3160327bb3d70e2361cd2ffbfbd26984590c01a421c24200c580b4c68a"
       },
       "../src/shared/base/dto/base-create-class.ts": {
@@ -2026,7 +2030,7 @@
         "signature": "159665ccf53daa8f8257148967c81dd476434b1f902039bc576e95544968b71d"
       },
       "../src/users/dto/create-user.dto.ts": {
-        "version": "b6fa8052799035bb1929bacac057baa3cdc79ae797dba83863d5d9b8d7f6f068",
+        "version": "60b5c86e7dc97c8609231274efcc2fcb13ed498c9e08fcd059a9a5df3693f0aa",
         "signature": "01b9c1cce77a3259037f04e7f6e302bd4cbb90802435128deba47164c1f99a9c"
       },
       "../src/users/users.controller.ts": {
@@ -2230,7 +2234,7 @@
         "signature": "0458c318ced92a4a436c18184c7a1310ce6f39c1077729729e0ddb044befc7de"
       },
       "../src/auth/dto/user-login.dto.ts": {
-        "version": "ea173928880386165dc1384da1b8d8380afa34154ca79fe2ed196cd10b5bf2f2",
+        "version": "eaa51741ae1e2354c51b604d095f005c008569c3ec97b26cbe0c13d5b76773c0",
         "signature": "bb0b28c8169ba41c0aa2a45339d9aa949c0a27aa17f67b4d7eba5a352a4b0576"
       },
       "../src/shared/decorators/user.decorator.ts": {
@@ -6592,11 +6596,19 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/shared/validators/extend-class-validator.ts": [
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/users/dto/update-user.dto.ts": [
         "../src/users/enum/roles.enums.ts",
         "../src/shared/base/dto/base-update-class.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
         "../node_modules/class-validator/index.d.ts",
+        "../src/shared/validators/extend-class-validator.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -11541,6 +11553,9 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/rxjs/index.d.ts"
       ],
+      "../src/shared/validators/extend-class-validator.ts": [
+        "../node_modules/class-validator/index.d.ts"
+      ],
       "../src/users/dto/update-user.dto.ts": [
         "../src/users/enum/roles.enums.ts",
         "../src/shared/base/dto/base-update-class.ts"
@@ -12729,7 +12744,8 @@
       "../node_modules/rxjs/internal/operators/zip.d.ts",
       "../node_modules/rxjs/internal/operators/zipall.d.ts",
       "../node_modules/rxjs/operators/index.d.ts",
-      "../src/users/dto/update-user.dto.ts",
+      "../src/shared/interceptors/hidden-password-field.interceptor.ts",
+      "../src/shared/validators/extend-class-validator.ts",
       "../src/shared/base/dto/base-create-class.ts",
       "../src/users/dto/create-user.dto.ts",
       "../src/users/users.controller.ts",
@@ -12851,7 +12867,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/shared/interceptors/hidden-password-field.interceptor.ts"
+      "../src/users/dto/update-user.dto.ts"
     ]
   },
   "version": "3.7.2"
