@@ -72,10 +72,20 @@ Nest is [MIT licensed](LICENSE).
 
 # TODO:
 ## Build
+- Complete the Geo-point mongo to location interceptor
 - Numbering system
 - Generic service
-- Pagination
-- 
+- Pagination for all "find many" and "search"
+- Create base Schema for all models
+- Activate version incemention for documents changes
+- Document every mongo ACL for create and update
+- Activate soft delete
+- Front-End: Angular
+- Mobile: Ionic
 ## Config
 - Elasticsearch
-- 
+- Web sockets: Gateways
+- Organize structure flixable to extend modules
+- Email for forget password
+- OAuth for authentication
+- Add validators and district them into decorators
