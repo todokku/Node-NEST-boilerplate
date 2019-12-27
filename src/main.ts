@@ -37,7 +37,7 @@ import * as helmet from 'helmet';
 import * as cookieParser from 'cookie-parser';
 
 // Main app for all apps
-import { AppModule } from './app.module';
+import { AppModule } from './modules/app.module';
 
 // Errors handler
 import { AllExceptionsFilter } from './shared/filters/exceptions.filter';

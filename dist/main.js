@@ -19,7 +19,7 @@ const class_validator_options_1 = require("./shared/options/class-validator.opti
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
-const app_module_1 = require("./app.module");
+const app_module_1 = require("./modules/app.module");
 const exceptions_filter_1 = require("./shared/filters/exceptions.filter");
 const compression = require("compression");
 async function bootstrap() {

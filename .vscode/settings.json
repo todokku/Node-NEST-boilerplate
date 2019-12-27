@@ -3,6 +3,9 @@
     "eslint.enable": false,
     "jshint.enable": false,
     "cSpell.words": [
+        "Csrf",
+        "dsphere",
+        "mongoosastic",
         "nestjs"
     ]
 }
