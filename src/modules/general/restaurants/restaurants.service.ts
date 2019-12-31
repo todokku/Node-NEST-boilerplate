@@ -9,9 +9,7 @@ export class RestaurantsService {
   constructor(
     @InjectModel('Restaurant')
     private readonly restaurantModel: Model<IRestaurant>,
-  ) {
-    this.nearestRestaurant({ type: 'Point', coordinates: [12, 13] });
-  }
+  ) {}
 
   create(restaurant: IRestaurant) {
     return this.restaurantModel.create(restaurant);

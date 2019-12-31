@@ -23,9 +23,11 @@
     "generate:doc": "npx compodoc -p tsconfig.json -s"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^7.5.0",
     "@hapi/joi": "^16.1.8",
     "@nestjs/common": "^6.7.2",
     "@nestjs/core": "^6.7.2",
+    "@nestjs/elasticsearch": "^7.0.0",
     "@nestjs/jwt": "^6.1.1",
     "@nestjs/mongoose": "^6.1.2",
     "@nestjs/passport": "^6.1.1",
@@ -45,6 +47,10 @@
     "helmet": "^3.21.2",
     "mongoosastic": "^4.5.1",
     "mongoose": "^5.7.13",
+    "mongoose-delete": "^0.5.1",
+    "mongoose-elasticsearch-xp": "^5.8.0",
+    "mongoose-timestamp": "^0.6.0",
+    "mongoose-update-document-version": "^1.0.2",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",

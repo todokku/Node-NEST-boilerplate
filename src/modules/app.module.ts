@@ -9,13 +9,35 @@ import { Module } from '@nestjs/common';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
+// import { ElasticsearchModule } from '@nestjs/elasticsearch';
+import { ElasticSearchModule } from './system/elastic-search/elastic-search.module';
+
+import { plugin } from 'mongoose';
+
+import * as mongooseUpdateDocumentVersion from 'mongoose-update-document-version';
+plugin(mongooseUpdateDocumentVersion);
+
+import * as timestamps from 'mongoose-timestamp';
+plugin(timestamps);
+
+import * as mongooseDelete from 'mongoose-delete';
+plugin(mongooseDelete, {
+  deletedAt: true,
+});
+
 @Module({
   imports: [
     /* Mongoose DB connection Init */
     MongooseModule.forRoot(
-      process.env.DB_URI.replace('{{databaseName}}', constants.databaseName),
+      process.env.DB_URI.replace('{{dbName}}', process.env.DATABASE_NAME),
       mongooseOptions,
     ),
+
+    /* Elastic-search */
+    ElasticSearchModule,
+    /* ElasticsearchModule.register({
+      node: 'http://127.0.0.1:9200',
+    }), */
 
     /* Serve static files at Public [eg: index.html, uploads] */
     ServeStaticModule.forRoot({

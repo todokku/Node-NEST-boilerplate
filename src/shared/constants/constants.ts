@@ -1,5 +1,4 @@
 export const constants = {
-  databaseName: 'nest-js-boilerplate',
   admin: {
     name: 'Admin',
     email: 'super@man.net',

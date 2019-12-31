@@ -21,7 +21,7 @@ import { Roles } from 'src/shared/decorators/roles.decorator';
 @ApiTags('Cities')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @ApiBearerAuth()
-@UseInterceptors(CacheInterceptor)
+// @UseInterceptors(CacheInterceptor)
 @Controller('cities')
 export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
