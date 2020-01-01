@@ -39,6 +39,11 @@ import * as cookieParser from 'cookie-parser';
 // Main app for all apps
 import { AppModule } from './modules/app.module';
 
+// Add global mongoose plugins
+import { plugin } from 'mongoose';
+import * as mongooseUpdateDocumentVersion from 'mongoose-update-document-version';
+plugin(mongooseUpdateDocumentVersion);
+
 // Errors handler
 import { AllExceptionsFilter } from './shared/filters/exceptions.filter';
 

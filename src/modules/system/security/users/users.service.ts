@@ -1,6 +1,6 @@
 import { bcryptOptions } from './../../../../shared/options/bcrypt.options';
 import { constants } from './../../../../shared/constants/constants';
-import { errors } from './../../../../shared/constants/errors';
+import { errors } from '../../../../shared/exceptions/errors';
 import { User } from './classes/user';
 import { IChangePassword } from './../auth/interfaces/change-password';
 import { IUser } from './interfaces/user.interface';

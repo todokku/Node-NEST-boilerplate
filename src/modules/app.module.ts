@@ -13,7 +13,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
   imports: [
     /* Mongoose DB connection Init */
     MongooseModule.forRoot(
-      process.env.DB_URI.replace('{{databaseName}}', constants.databaseName),
+      process.env.DB_URI.replace('{{databaseName}}', process.env.DATABASE_NAME),
       mongooseOptions,
     ),
 

@@ -24,6 +24,6 @@ export const filesUpload = {
       'image/x-xpixmap',
       'image/x-xwindowdump',
     ],
-    maximumSize: 5242880, // 5 mega-bytes binary
+    maximumSize: 5242880, // 5 mega-bytes binary = 5 * 1024 * 1024
   },
 };

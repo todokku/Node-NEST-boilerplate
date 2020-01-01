@@ -7,10 +7,13 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+// Delete the field from the object
 function deleting(object: object, fieldName: string) {
   delete object[fieldName];
   return object;
 }
+
+// Decide if data is object or array to delete from
 function deleteFromArrayOfSingleObject(data: object | object[], field: string) {
   if (Array.isArray(data)) {
     return data.map(object => {

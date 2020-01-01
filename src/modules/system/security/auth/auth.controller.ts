@@ -1,6 +1,6 @@
 import { User } from './../../../../shared/decorators/user.decorator';
 import { bcryptOptions } from './../../../../shared/options/bcrypt.options';
-import { errors } from './../../../../shared/constants/errors';
+import { errors } from '../../../../shared/exceptions/errors';
 import { DeleteFieldsInterceptor } from './../../../../shared/interceptors/delete-fields.interceptor';
 import { RegisterNewUserDto } from './dto/register-new-user.dto';
 import { IUserJWT } from './interfaces/jwt-user';

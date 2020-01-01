@@ -69,20 +69,25 @@ Notes:
 
 Nest is [MIT licensed](LICENSE).
 
-
 # TODO:
+
 ## Build
+
+- <s>Activate version incrementing for documents changes</s>
+- <s>Exclude password from any response about user or auth</s>
+- <s>Create generic interceptor to delete fields fields</s>
 - Complete the Geo-point mongo to location interceptor
 - Numbering system
 - Generic service
 - Pagination for all "find many" and "search"
 - Create base Schema for all models
-- Activate version incemention for documents changes
 - Document every mongo ACL for create and update
 - Activate soft delete
 - Front-End: Angular
 - Mobile: Ionic
+
 ## Config
+
 - Elasticsearch
 - Web sockets: Gateways
 - Organize structure flixable to extend modules

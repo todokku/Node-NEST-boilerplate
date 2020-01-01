@@ -1,17 +1,17 @@
-import { AcceptedException } from './../exceptions/accept.exception';
+import { AcceptedException } from './accept.exception';
 import {
-  HttpException,
-  HttpStatus,
   UnauthorizedException,
   ForbiddenException,
   GoneException,
 } from '@nestjs/common';
 
 export const errors = {
+  // Custom Exceptions
   deletedSuccessfully: new AcceptedException({
     message: 'Document deleted successfully',
   }),
 
+  // Building Exceptions
   documentNotFound: new GoneException('Cannot found document with this ID'),
   invalidEmailOrPassword: new UnauthorizedException(
     'Invalid "Email" or "Password"',
@@ -23,7 +23,7 @@ export const errors = {
   invalidNewPassConfirmation: new ForbiddenException(
     '"New password" and "Confirm new password" are not equal',
   ),
-
+  
   validateOnType: {
     images: new ForbiddenException('Uploaded file not an image'),
   },

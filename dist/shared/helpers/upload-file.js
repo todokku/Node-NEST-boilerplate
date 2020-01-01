@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = require("path");
 const fs_1 = require("fs");
-const errors_1 = require("./../constants/errors");
+const errors_1 = require("../exceptions/errors");
 const files_upload_1 = require("./../constants/files-upload");
 function uploadFile({ uploadedFileType, file }) {
     if (files_upload_1.filesUpload[uploadedFileType].mimesType.indexOf(file.mimetype) + 1) {

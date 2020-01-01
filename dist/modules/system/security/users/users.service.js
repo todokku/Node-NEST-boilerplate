@@ -15,7 +15,7 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_options_1 = require("./../../../../shared/options/bcrypt.options");
 const constants_1 = require("./../../../../shared/constants/constants");
-const errors_1 = require("./../../../../shared/constants/errors");
+const errors_1 = require("../../../../shared/exceptions/errors");
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");

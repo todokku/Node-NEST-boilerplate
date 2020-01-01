@@ -14,7 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_decorator_1 = require("./../../../../shared/decorators/user.decorator");
 const bcrypt_options_1 = require("./../../../../shared/options/bcrypt.options");
-const errors_1 = require("./../../../../shared/constants/errors");
+const errors_1 = require("../../../../shared/exceptions/errors");
 const delete_fields_interceptor_1 = require("./../../../../shared/interceptors/delete-fields.interceptor");
 const register_new_user_dto_1 = require("./dto/register-new-user.dto");
 const change_password_dto_1 = require("./dto/change-password-dto");

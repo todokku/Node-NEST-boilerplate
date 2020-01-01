@@ -1,4 +1,4 @@
-import { errors } from './../../../../../shared/constants/errors';
+import { errors } from '../../../../../shared/exceptions/errors';
 import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, Logger } from '@nestjs/common';

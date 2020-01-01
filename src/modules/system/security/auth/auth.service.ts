@@ -1,5 +1,5 @@
 import { bcryptOptions } from './../../../../shared/options/bcrypt.options';
-import { errors } from './../../../../shared/constants/errors';
+import { errors } from '../../../../shared/exceptions/errors';
 import { ChangePasswordDto } from './dto/change-password-dto';
 import { ObjectId } from 'mongoose';
 import { IUser } from './../users/interfaces/user.interface';

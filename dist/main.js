@@ -20,6 +20,9 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const app_module_1 = require("./modules/app.module");
+const mongoose_1 = require("mongoose");
+const mongooseUpdateDocumentVersion = require("mongoose-update-document-version");
+mongoose_1.plugin(mongooseUpdateDocumentVersion);
 const exceptions_filter_1 = require("./shared/filters/exceptions.filter");
 const compression = require("compression");
 async function bootstrap() {

@@ -16,7 +16,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     console.log({
       exceptionConstructorName: exception.constructor.name,
       isHttpError: exception instanceof HttpException,
-      // exception,
+      exception,
     });
 
     const ctx = host.switchToHttp();

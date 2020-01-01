@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { writeFileSync } from 'fs';
-import { errors } from './../constants/errors';
+import { errors } from '../exceptions/errors';
 import { filesUpload } from './../constants/files-upload';
 
 export function uploadFile({ uploadedFileType, file }) {

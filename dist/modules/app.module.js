@@ -11,7 +11,6 @@ const cities_module_1 = require("./general/cities/cities.module");
 const users_module_1 = require("./system/security/users/users.module");
 const auth_module_1 = require("./system/security/auth/auth.module");
 const mongoose_options_1 = require("./../shared/options/mongoose.options");
-const constants_1 = require("./../shared/constants/constants");
 const mongoose_1 = require("@nestjs/mongoose");
 const common_1 = require("@nestjs/common");
 const path_1 = require("path");
@@ -21,7 +20,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     common_1.Module({
         imports: [
-            mongoose_1.MongooseModule.forRoot(process.env.DB_URI.replace('{{databaseName}}', constants_1.constants.databaseName), mongoose_options_1.mongooseOptions),
+            mongoose_1.MongooseModule.forRoot(process.env.DB_URI.replace('{{databaseName}}', process.env.DATABASE_NAME), mongoose_options_1.mongooseOptions),
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: path_1.join('.', 'public'),
             }),

@@ -13,6 +13,7 @@ let AllExceptionsFilter = class AllExceptionsFilter {
         console.log({
             exceptionConstructorName: exception.constructor.name,
             isHttpError: exception instanceof common_1.HttpException,
+            exception,
         });
         const ctx = host.switchToHttp();
         const req = ctx.getRequest();
