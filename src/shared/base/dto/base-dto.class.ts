@@ -3,7 +3,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsMongoId, IsNumber, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class BaseDtoClass {
-  // Id
   //   @ApiProperty({
   //     example: '000000000000000000000000',
   //     description:
@@ -28,4 +27,9 @@ export class BaseDtoClass {
   })
   @IsNotEmpty()
   readonly name: string;
+
+  deleted?: boolean;
+
+  createdAt?: Date;
+  updatedAt?: Date;
 }

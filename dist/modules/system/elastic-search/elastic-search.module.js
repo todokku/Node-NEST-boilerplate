@@ -6,26 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const cities_service_1 = require("./cities.service");
-const cities_controller_1 = require("./cities.controller");
+const elasticsearch_1 = require("@nestjs/elasticsearch");
 const common_1 = require("@nestjs/common");
-const mongoose_1 = require("@nestjs/mongoose");
-const city_schema_1 = require("./schemas/city.schema");
-let CitiesModule = class CitiesModule {
+const elastic_search_service_1 = require("./elastic-search.service");
+let ElasticSearchModule = class ElasticSearchModule {
 };
-CitiesModule = __decorate([
+ElasticSearchModule = __decorate([
+    common_1.Global(),
     common_1.Module({
         imports: [
-            mongoose_1.MongooseModule.forFeature([
-                {
-                    name: 'City',
-                    schema: city_schema_1.CitySchema,
-                },
-            ]),
+            elasticsearch_1.ElasticsearchModule.register({
+                node: 'http://localhost:9200',
+            }),
         ],
-        controllers: [cities_controller_1.CitiesController],
-        providers: [cities_service_1.CitiesService],
+        providers: [elastic_search_service_1.ElasticSearchService],
+        exports: [elastic_search_service_1.ElasticSearchService],
     })
-], CitiesModule);
-exports.CitiesModule = CitiesModule;
-//# sourceMappingURL=cities.module.js.map
+], ElasticSearchModule);
+exports.ElasticSearchModule = ElasticSearchModule;
+//# sourceMappingURL=elastic-search.module.js.map

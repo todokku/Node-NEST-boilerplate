@@ -102,7 +102,6 @@ CitiesController = __decorate([
     swagger_1.ApiTags('Cities'),
     common_1.UseGuards(passport_1.AuthGuard('jwt'), roles_guard_1.RolesGuard),
     swagger_1.ApiBearerAuth(),
-    common_1.UseInterceptors(common_1.CacheInterceptor),
     common_1.Controller('cities'),
     __metadata("design:paramtypes", [cities_service_1.CitiesService])
 ], CitiesController);

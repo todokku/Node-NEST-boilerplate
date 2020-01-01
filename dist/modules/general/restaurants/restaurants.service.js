@@ -19,7 +19,6 @@ const mongoose_2 = require("mongoose");
 let RestaurantsService = class RestaurantsService {
     constructor(restaurantModel) {
         this.restaurantModel = restaurantModel;
-        this.nearestRestaurant({ type: 'Point', coordinates: [12, 13] });
     }
     create(restaurant) {
         return this.restaurantModel.create(restaurant);

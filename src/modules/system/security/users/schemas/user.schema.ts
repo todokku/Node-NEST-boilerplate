@@ -1,6 +1,5 @@
 import { UserRoles } from './../enum/roles.enums';
 import { Schema } from 'mongoose';
-// import * as mongoosastic from 'mongoosastic';
 
 export const UserSchema = new Schema({
   name: { type: String },
@@ -10,5 +9,3 @@ export const UserSchema = new Schema({
 });
 
 UserSchema.index({ email: 1 }, { unique: true });
-
-// UserSchema.plugin(mongoosastic, elasticSearchOptions);
