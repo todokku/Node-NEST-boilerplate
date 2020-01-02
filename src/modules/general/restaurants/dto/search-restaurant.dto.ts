@@ -1,6 +1,4 @@
-import { IMongoPoint } from '../interfaces/mongo-point.interface';
-import { LocationDto } from './location.dto';
-import { IsMongoId, IsString, IsEmail } from 'class-validator';
+import { IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class RestaurantsSearchDto {

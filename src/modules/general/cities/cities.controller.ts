@@ -1,7 +1,6 @@
 import { RolesGuard } from './../../../shared/guards/roles.guard';
 import { AuthGuard } from '@nestjs/passport';
-import { UpdateCityDto } from './dto/update-city.dto';
-import { CreateCityDto } from './dto/create-city.dto';
+import { CityDto } from './dto/city.dto';
 import { CitiesService } from './cities.service';
 import {
   Controller,
@@ -37,7 +36,7 @@ export class CitiesController {
   //   description: 'The record has been successfully created.',
   // })
   // @ApiResponse({ status: 403, description: 'Forbidden.' })
-  create(@Body() createCityDto: CreateCityDto) {
+  create(@Body() createCityDto: CityDto) {
     return this.citiesService.create(createCityDto);
   }
 
@@ -76,7 +75,7 @@ export class CitiesController {
     summary: 'Update city by id',
     description: 'End-Point for update city by id',
   })
-  update(@Param('_id') id: string, @Body() updateCityDto: UpdateCityDto) {
+  update(@Param('_id') id: string, @Body() updateCityDto: CityDto) {
     return this.citiesService.update(id, updateCityDto);
   }
 }

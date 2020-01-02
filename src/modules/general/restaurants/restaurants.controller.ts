@@ -1,6 +1,7 @@
 import { ParseToObjectPipe } from './../../../shared/pipes/parse-to-object.pipe';
 import { RolesGuard } from './../../../shared/guards/roles.guard';
 import { RestaurantsSearchDto } from './dto/search-restaurant.dto';
+
 // Nest modules
 import {
   Controller,
@@ -23,8 +24,7 @@ import {
 } from '@nestjs/swagger';
 
 // DTO
-import { CreateRestaurantDto } from './dto/create-restaurant.dto';
-import { UpdateRestaurantDto } from './dto/update-restaurant.dto';
+import { RestaurantDto } from './dto/restaurant.dto';
 
 // Helpers
 import { RestaurantsService } from './restaurants.service';
@@ -41,9 +41,6 @@ import { uploadFile } from '../../../shared/helpers/upload-file';
 import { JoiValidatorPipe } from 'src/shared/pipes/joi-validator.pipe';
 import { ObjectToMongoPointPipe } from 'src/shared/pipes/object-to-mongo-point.pipe';
 
-// // Constants
-// const locationFiledName = 'location';
-
 @ApiTags('Restaurants')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @ApiBearerAuth()
@@ -59,7 +56,7 @@ export class RestaurantsController {
   })
   @UseInterceptors(FileInterceptor('image' /* ,{ dest: './upload', } */))
   @ApiConsumes('multipart/form-data')
-  @ApiBody({ type: CreateRestaurantDto })
+  @ApiBody({ type: RestaurantDto })
   create(
     @UploadedFile() image: any,
     @Body(
@@ -140,7 +137,7 @@ export class RestaurantsController {
   })
   @UseInterceptors(FileInterceptor('image'))
   @ApiConsumes('multipart/form-data')
-  @ApiBody({ type: UpdateRestaurantDto })
+  @ApiBody({ type: RestaurantDto })
   update(
     @Param('_id') id: string,
     @UploadedFile() image: any,
