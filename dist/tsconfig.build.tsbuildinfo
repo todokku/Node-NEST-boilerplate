@@ -1714,7 +1714,7 @@
         "signature": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078"
       },
       "../src/modules/system/elastic-search/elastic-search.service.ts": {
-        "version": "c552a5b93e8921e89ac325f6d570c21fb10f741f7a9832a175dfc243b78b4286",
+        "version": "2fa604085fd02ec90d0395cd34710acf7e6dc7b287d8f35973e3546931b01044",
         "signature": "af341c86b82581f755a4066ec5b1f850ac3bd7eebafab331557fa837ab089068"
       },
       "../src/modules/system/elastic-search/elastic-search.module.ts": {

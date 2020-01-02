@@ -15,7 +15,7 @@ let ElasticSearchService = class ElasticSearchService {
     constructor(elasticsearchService) {
         this.elasticsearchService = elasticsearchService;
         (async function () {
-            console.log(await elasticsearchService.search());
+            console.log(await elasticsearchService.search(), '');
         })();
     }
 };

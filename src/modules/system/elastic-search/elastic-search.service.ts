@@ -5,7 +5,7 @@ import { ElasticsearchService } from '@nestjs/elasticsearch';
 export class ElasticSearchService {
   constructor(private readonly elasticsearchService: ElasticsearchService) {
     (async function() {
-      console.log(await elasticsearchService.search());
+      console.log(await elasticsearchService.search(), '');
     })();
   }
 }
