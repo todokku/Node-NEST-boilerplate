@@ -1566,7 +1566,7 @@
         "signature": "e3cd60be3c4f95c43420be67eaa21637585b7c1a8129f9b39983bbd294f9513c"
       },
       "../src/shared/base/dto/base-dto.class.ts": {
-        "version": "ed77279909f451952352f827725da74dcaa1df6bfb24146151a3643b5ae93090",
+        "version": "c1070173b23d7bd7fcf96209853a54c2cfda6349eba2766d7abaeec6a9729027",
         "signature": "8f7be2c02842001b58b2d663f5d35e59509bf0ed35f5828ba2d0353cdeb601b0"
       },
       "../src/modules/general/restaurants/dto/restaurant.dto.ts": {
@@ -1714,7 +1714,7 @@
         "signature": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078"
       },
       "../src/modules/system/elastic-search/elastic-search.service.ts": {
-        "version": "d34b92540708ed20a51fb2a299b6212ec3b4ad452c74bc47b9a16fd4f93c93b5",
+        "version": "c552a5b93e8921e89ac325f6d570c21fb10f741f7a9832a175dfc243b78b4286",
         "signature": "af341c86b82581f755a4066ec5b1f850ac3bd7eebafab331557fa837ab089068"
       },
       "../src/modules/system/elastic-search/elastic-search.module.ts": {
@@ -12991,11 +12991,13 @@
       "../node_modules/@nestjs/elasticsearch/dist/interfaces/index.d.ts",
       "../node_modules/@nestjs/elasticsearch/dist/index.d.ts",
       "../node_modules/@nestjs/elasticsearch/index.d.ts",
-      "../src/modules/system/elastic-search/elastic-search.service.ts",
       "../src/modules/system/elastic-search/elastic-search.module.ts",
       "../src/modules/general/cities/interfaces/city.interface.ts",
       "../src/modules/general/cities/cities.service.ts",
+      "../src/modules/general/cities/dto/city.dto.ts",
+      "../src/modules/general/cities/cities.controller.ts",
       "../src/modules/general/cities/schemas/city.schema.ts",
+      "../src/modules/general/cities/cities.module.ts",
       "../src/modules/system/security/users/enum/roles.enums.ts",
       "../src/modules/system/security/users/schemas/user.schema.ts",
       "../src/shared/options/bcrypt.options.ts",
@@ -13163,6 +13165,7 @@
       "../node_modules/@nestjs/serve-static/dist/serve-static.providers.d.ts",
       "../node_modules/@nestjs/serve-static/dist/index.d.ts",
       "../node_modules/@nestjs/serve-static/index.d.ts",
+      "../src/modules/app.module.ts",
       "../src/shared/filters/exceptions.filter.ts",
       "../src/main.ts",
       "../src/modules/general/restaurants/interfaces/location.interface.ts",
@@ -13203,10 +13206,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/modules/general/cities/dto/city.dto.ts",
-      "../src/modules/general/cities/cities.controller.ts",
-      "../src/modules/general/cities/cities.module.ts",
-      "../src/modules/app.module.ts"
+      "../src/modules/system/elastic-search/elastic-search.service.ts"
     ]
   },
   "version": "3.7.2"

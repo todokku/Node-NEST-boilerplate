@@ -4,6 +4,8 @@ import { ElasticsearchService } from '@nestjs/elasticsearch';
 @Injectable()
 export class ElasticSearchService {
   constructor(private readonly elasticsearchService: ElasticsearchService) {
-    console.log(elasticsearchService.search());
+    (async function() {
+      console.log(await elasticsearchService.search());
+    })();
   }
 }

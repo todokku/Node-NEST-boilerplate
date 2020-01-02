@@ -14,7 +14,9 @@ const elasticsearch_1 = require("@nestjs/elasticsearch");
 let ElasticSearchService = class ElasticSearchService {
     constructor(elasticsearchService) {
         this.elasticsearchService = elasticsearchService;
-        console.log(elasticsearchService.search());
+        (async function () {
+            console.log(await elasticsearchService.search());
+        })();
     }
 };
 ElasticSearchService = __decorate([

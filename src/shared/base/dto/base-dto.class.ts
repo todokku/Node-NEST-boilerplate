@@ -10,6 +10,7 @@ export class BaseDtoClass {
   //   })
   //   @IsMongoId()
   //   @IsOptional()
+  // tslint:disable-next-line: variable-name
   readonly _id?: ObjectId;
 
   // Version
@@ -18,6 +19,7 @@ export class BaseDtoClass {
   //     description: 'Version of the document',
   //   })
   //   @IsNumber()
+  // tslint:disable-next-line: variable-name
   readonly __v?: number;
 
   // Name
