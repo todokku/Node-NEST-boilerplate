@@ -9,7 +9,7 @@ export class CitiesService {
   constructor(
     @InjectModel('City')
     private readonly cityModel: Model<ICity>,
-    elasticSearchService: ElasticSearchService,
+    // elasticSearchService: ElasticSearchService,
   ) {
     // console.log({ cityModel });
 
@@ -29,7 +29,7 @@ export class CitiesService {
       }
     }); */
 
-    cityModel.synchronize();
+    // cityModel.synchronize();
 
     // const stream = cityModel.synchronize();
     // let count = 0;

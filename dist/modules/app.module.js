@@ -15,7 +15,6 @@ const mongoose_1 = require("@nestjs/mongoose");
 const common_1 = require("@nestjs/common");
 const path_1 = require("path");
 const serve_static_1 = require("@nestjs/serve-static");
-const elastic_search_module_1 = require("./system/elastic-search/elastic-search.module");
 const mongoose_2 = require("mongoose");
 const countries_module_1 = require("./general/countries/countries.module");
 const mongooseUpdateDocumentVersion = require("mongoose-update-document-version");
@@ -32,7 +31,6 @@ AppModule = __decorate([
     common_1.Module({
         imports: [
             mongoose_1.MongooseModule.forRoot(process.env.DB_URI.replace('{{dbName}}', process.env.DATABASE_NAME), mongoose_options_1.mongooseOptions),
-            elastic_search_module_1.ElasticSearchModule,
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: path_1.join('.', 'public'),
             }),

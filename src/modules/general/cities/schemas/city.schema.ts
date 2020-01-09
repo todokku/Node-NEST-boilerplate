@@ -1,7 +1,7 @@
 import { Schema, ObjectId } from 'mongoose';
 // import { v7 } from 'mongoose-elasticsearch-xp';
 
-import * as mongoosastic from 'mongoosastic';
+// import * as mongoosastic from 'mongoosastic';
 
 export const CitySchema = new Schema({
   name: {
@@ -11,7 +11,7 @@ export const CitySchema = new Schema({
   id: ObjectId,
 });
 
-CitySchema.plugin(mongoosastic);
+// CitySchema.plugin(mongoosastic);
 
 // CitySchema.plugin(mongoosastic, {
 //   hosts: ['http://localhost:9200'],
