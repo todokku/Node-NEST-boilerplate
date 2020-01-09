@@ -13,6 +13,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { ElasticSearchModule } from './system/elastic-search/elastic-search.module';
 
 import { plugin } from 'mongoose';
+import { CountriesModule } from './general/countries/countries.module';
 
 import * as mongooseUpdateDocumentVersion from 'mongoose-update-document-version';
 plugin(mongooseUpdateDocumentVersion);
@@ -49,6 +50,9 @@ plugin(mongooseDelete, {
     UsersModule,
     CitiesModule,
     RestaurantsModule,
+    CountriesModule,
   ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

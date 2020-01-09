@@ -11,8 +11,10 @@ export class CitiesService {
     private readonly cityModel: Model<ICity>,
     elasticSearchService: ElasticSearchService,
   ) {
+    // console.log({ cityModel });
+
     // console.log(elasticSearchService);
-    console.log({ cityModel });
+
     // cityModel.create(
     //   { name: 'alexandria' },
     //   (err, data) => {},
@@ -27,10 +29,12 @@ export class CitiesService {
       }
     }); */
 
+    cityModel.synchronize();
+
     // const stream = cityModel.synchronize();
     // let count = 0;
     // stream.on('data', (err, data) => {
-    //   console.log({ err, data });
+    //   // console.log({ err, data });
     //   count++;
     // });
     // stream.on('close', () => {

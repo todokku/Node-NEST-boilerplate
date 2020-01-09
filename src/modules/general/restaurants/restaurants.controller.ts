@@ -1,3 +1,4 @@
+import { MongoPointToLatLngInterceptor } from './../../../shared/interceptors/mongo-point-to-lat-lng.interceptor';
 import { ParseToObjectPipe } from './../../../shared/pipes/parse-to-object.pipe';
 import { RolesGuard } from './../../../shared/guards/roles.guard';
 import { RestaurantsSearchDto } from './dto/search-restaurant.dto';
@@ -54,7 +55,10 @@ export class RestaurantsController {
     summary: 'Create restaurant',
     description: 'End-Point for create restaurant',
   })
-  @UseInterceptors(FileInterceptor('image' /* ,{ dest: './upload', } */))
+  @UseInterceptors(
+    FileInterceptor('image' /* ,{ dest: './upload', } */),
+    MongoPointToLatLngInterceptor,
+  )
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: RestaurantDto })
   create(
@@ -135,7 +139,7 @@ export class RestaurantsController {
     summary: 'Update restaurant by id',
     description: 'End-Point for update restaurant by id',
   })
-  @UseInterceptors(FileInterceptor('image'))
+  @UseInterceptors(FileInterceptor('image'), MongoPointToLatLngInterceptor)
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: RestaurantDto })
   update(

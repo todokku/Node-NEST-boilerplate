@@ -34,7 +34,7 @@ import * as helmet from 'helmet';
 // import { CsrfMiddleware } from './shared/middle-wares/csrf.middleware';
 
 // Cookies parser
-import * as cookieParser from 'cookie-parser';
+// import * as cookieParser from 'cookie-parser';
 
 // Main app for all apps
 import { AppModule } from './modules/app.module';
@@ -66,7 +66,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe(classValidatorOptions));
 
   // Cookie parser: parse income header cookies
-  app.use(cookieParser());
+  // app.use(cookieParser());
 
   // Compression: decrease the size of the response body for production
   if (process.env.NODE_ENV === 'production') {

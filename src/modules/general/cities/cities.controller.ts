@@ -11,8 +11,6 @@ import {
   Param,
   Body,
   UseGuards,
-  UseInterceptors,
-  CacheInterceptor,
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { Roles } from 'src/shared/decorators/roles.decorator';
@@ -20,7 +18,6 @@ import { Roles } from 'src/shared/decorators/roles.decorator';
 @ApiTags('Cities')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @ApiBearerAuth()
-// @UseInterceptors(CacheInterceptor)
 @Controller('cities')
 export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
@@ -31,11 +28,6 @@ export class CitiesController {
     summary: 'Create city',
     description: 'End-Point for create city',
   })
-  // @ApiResponse({
-  //   status: 201,
-  //   description: 'The record has been successfully created.',
-  // })
-  // @ApiResponse({ status: 403, description: 'Forbidden.' })
   create(@Body() createCityDto: CityDto) {
     return this.citiesService.create(createCityDto);
   }

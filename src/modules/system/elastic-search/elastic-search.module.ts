@@ -12,4 +12,6 @@ import { ElasticSearchService } from './elastic-search.service';
   providers: [ElasticSearchService],
   exports: [ElasticSearchService],
 })
-export class ElasticSearchModule {}
+export class ElasticSearchModule {
+  constructor() {}
+}
