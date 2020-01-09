@@ -1721,17 +1721,13 @@
         "version": "636ae91367cc4f3eb13eaf5d2b4e984b42e87ba5ea78d195325890bad6c8a066",
         "signature": "9192fc360d640d9a08a06d4cac48a87e3d36e17d16e48036207691b79f66d3f3"
       },
-      "../src/modules/system/elastic-search/elastic-search.module.ts": {
-        "version": "23a9be1aefe617150980ec42dffe01ac2c4e76ed367efe05d38af4c117ca1f79",
-        "signature": "4150beaff475c059b56b0d9681db8a291cc3a325478f5b45bf108bae6e60ae06"
-      },
       "../src/modules/general/cities/interfaces/city.interface.ts": {
         "version": "b5359f5f1902dfd6c1007f64779adfcd9a71013fb75b036d44c5fed7f461ce39",
         "signature": "330b15d53f5cacc91e6953d787c0ee097d5396e2a30fa85f48481777fbd2d347"
       },
       "../src/modules/general/cities/cities.service.ts": {
-        "version": "204d1cd8d7cab5ef25e1ef7716b72e683c4ef6e8a1dfe726ca3feaa8f9b364be",
-        "signature": "bbcf15fb9373dc0ac572a9afaaf1eea19bd8151caf7a179a07f104655f15583d"
+        "version": "3471314b0d5bf3eca77827a18ae05b54c552dca9b2534b66dddffd0abf2bf0e5",
+        "signature": "2850807e428f5c762b4c858f5db89f8b1dbe9df270145da2090c6e2554c58505"
       },
       "../src/modules/general/cities/dto/city.dto.ts": {
         "version": "32e6f9341dff41e222fd5f3fce0861c9aeb6026925bd6579de8f2c1d13671161",
@@ -2409,6 +2405,10 @@
         "version": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078",
         "signature": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078"
       },
+      "../src/modules/system/elastic-search/elastic-search.module.ts": {
+        "version": "23a9be1aefe617150980ec42dffe01ac2c4e76ed367efe05d38af4c117ca1f79",
+        "signature": "4150beaff475c059b56b0d9681db8a291cc3a325478f5b45bf108bae6e60ae06"
+      },
       "../src/modules/general/countries/models/country.model.ts": {
         "version": "c99696c7f602aa97927ef4b0fbb3850f43cf1fe38e811e3063b5dae848520861",
         "signature": "048ced7cbe2a22725471ada526d713dd7f2d9377a4f2eec7b90c1c645d7419f7"
@@ -2646,7 +2646,7 @@
         "signature": "fc0d7c57c9bcc4d86e811e2a43d51fdfead5b2ab6ec9a0c4fb287283825c4a1d"
       },
       "../src/modules/app.module.ts": {
-        "version": "793a7e5c00119a6b601a364a4c428bb8aad9fbc6a76af91cb055bf785ac92da6",
+        "version": "1d54144a8f4013a1376ef9b53240c0e60cf80458ceb2cbe1eee7bd22aacc97e9",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88"
       },
       "../src/shared/filters/exceptions.filter.ts": {
@@ -6253,15 +6253,6 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../src/modules/system/elastic-search/elastic-search.module.ts": [
-        "../node_modules/@nestjs/elasticsearch/index.d.ts",
-        "../node_modules/@nestjs/common/index.d.ts",
-        "../src/modules/system/elastic-search/elastic-search.service.ts",
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
       "../src/modules/general/cities/interfaces/city.interface.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -6269,7 +6260,6 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../src/modules/general/cities/cities.service.ts": [
-        "../src/modules/system/elastic-search/elastic-search.module.ts",
         "../src/modules/system/elastic-search/elastic-search.service.ts",
         "../src/modules/general/cities/interfaces/city.interface.ts",
         "../node_modules/@nestjs/common/index.d.ts",
@@ -7731,6 +7721,15 @@
       ],
       "../node_modules/@nestjs/serve-static/index.d.ts": [
         "../node_modules/@nestjs/serve-static/dist/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/modules/system/elastic-search/elastic-search.module.ts": [
+        "../node_modules/@nestjs/elasticsearch/index.d.ts",
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../src/modules/system/elastic-search/elastic-search.service.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -11781,7 +11780,8 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../src/modules/general/cities/cities.service.ts": [
-        "../src/modules/general/cities/interfaces/city.interface.ts"
+        "../src/modules/general/cities/interfaces/city.interface.ts",
+        "../src/modules/system/elastic-search/elastic-search.service.ts"
       ],
       "../src/modules/general/cities/dto/city.dto.ts": [
         "../src/shared/base/dto/base-dto.class.ts"
@@ -14132,8 +14132,8 @@
       "../node_modules/@nestjs/elasticsearch/dist/index.d.ts",
       "../node_modules/@nestjs/elasticsearch/index.d.ts",
       "../src/modules/system/elastic-search/elastic-search.service.ts",
-      "../src/modules/system/elastic-search/elastic-search.module.ts",
       "../src/modules/general/cities/interfaces/city.interface.ts",
+      "../src/modules/general/cities/cities.service.ts",
       "../src/modules/general/cities/dto/city.dto.ts",
       "../src/modules/general/cities/cities.controller.ts",
       "../src/modules/general/cities/schemas/city.schema.ts",
@@ -14303,6 +14303,7 @@
       "../node_modules/@nestjs/serve-static/dist/serve-static.providers.d.ts",
       "../node_modules/@nestjs/serve-static/dist/index.d.ts",
       "../node_modules/@nestjs/serve-static/index.d.ts",
+      "../src/modules/system/elastic-search/elastic-search.module.ts",
       "../src/modules/general/countries/models/country.model.ts",
       "../src/modules/general/countries/countries.service.ts",
       "../node_modules/@nestjsx/crud-request/lib/exceptions/request-query.exception.d.ts",
@@ -14362,7 +14363,6 @@
       "../node_modules/@nestjsx/crud/lib/index.d.ts",
       "../src/modules/general/countries/countries.controller.ts",
       "../src/modules/general/countries/countries.module.ts",
-      "../src/modules/app.module.ts",
       "../src/shared/filters/exceptions.filter.ts",
       "../src/main.ts",
       "../src/modules/general/countries/dto/country.model.ts",
@@ -14404,7 +14404,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/modules/general/cities/cities.service.ts"
+      "../src/modules/app.module.ts"
     ]
   },
   "version": "3.7.2"

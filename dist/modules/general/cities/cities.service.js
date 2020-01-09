@@ -13,11 +13,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
+const elastic_search_service_1 = require("./../../system/elastic-search/elastic-search.service");
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let CitiesService = class CitiesService {
-    constructor(cityModel) {
+    constructor(cityModel, elasticSearchService) {
         this.cityModel = cityModel;
     }
     create(city) {
@@ -39,7 +40,7 @@ let CitiesService = class CitiesService {
 CitiesService = __decorate([
     common_1.Injectable(),
     __param(0, mongoose_1.InjectModel('City')),
-    __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object, elastic_search_service_1.ElasticSearchService])
 ], CitiesService);
 exports.CitiesService = CitiesService;
 //# sourceMappingURL=cities.service.js.map

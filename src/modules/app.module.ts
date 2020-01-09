@@ -35,7 +35,7 @@ plugin(mongooseDelete, {
     ),
 
     /* Elastic-search */
-    // ElasticSearchModule,
+    ElasticSearchModule,
     /* ElasticsearchModule.register({
       node: 'http://127.0.0.1:9200',
     }), */

@@ -1,4 +1,3 @@
-import { ElasticSearchModule } from './../../system/elastic-search/elastic-search.module';
 import { ElasticSearchService } from './../../system/elastic-search/elastic-search.service';
 import { ICity } from './interfaces/city.interface';
 import { Injectable, Logger } from '@nestjs/common';
@@ -9,7 +8,7 @@ export class CitiesService {
   constructor(
     @InjectModel('City')
     private readonly cityModel: Model<ICity>,
-    // elasticSearchService: ElasticSearchService,
+    elasticSearchService: ElasticSearchService,
   ) {
     // console.log({ cityModel });
 
