@@ -2646,7 +2646,7 @@
         "signature": "fc0d7c57c9bcc4d86e811e2a43d51fdfead5b2ab6ec9a0c4fb287283825c4a1d"
       },
       "../src/modules/app.module.ts": {
-        "version": "1d54144a8f4013a1376ef9b53240c0e60cf80458ceb2cbe1eee7bd22aacc97e9",
+        "version": "b4e7236e242e07c2698c10a84ff3d6a838af5c0f61f94736e05177d2cb6c8dc7",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88"
       },
       "../src/shared/filters/exceptions.filter.ts": {

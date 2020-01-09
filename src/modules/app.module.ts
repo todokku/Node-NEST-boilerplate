@@ -15,16 +15,17 @@ import { ElasticSearchModule } from './system/elastic-search/elastic-search.modu
 import { plugin } from 'mongoose';
 import { CountriesModule } from './general/countries/countries.module';
 
+// Inject handler and the incrementor of document version "__v"
 import * as mongooseUpdateDocumentVersion from 'mongoose-update-document-version';
 plugin(mongooseUpdateDocumentVersion);
 
+// Inject create date and update date in all mongoose schemas
 import * as timestamps from 'mongoose-timestamp';
 plugin(timestamps);
 
+// Inject soft-delete in all mongoose schemas
 import * as mongooseDelete from 'mongoose-delete';
-plugin(mongooseDelete, {
-  deletedAt: true,
-});
+plugin(mongooseDelete, { deletedAt: true });
 
 @Module({
   imports: [

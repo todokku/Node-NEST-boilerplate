@@ -23,9 +23,7 @@ mongoose_2.plugin(mongooseUpdateDocumentVersion);
 const timestamps = require("mongoose-timestamp");
 mongoose_2.plugin(timestamps);
 const mongooseDelete = require("mongoose-delete");
-mongoose_2.plugin(mongooseDelete, {
-    deletedAt: true,
-});
+mongoose_2.plugin(mongooseDelete, { deletedAt: true });
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
